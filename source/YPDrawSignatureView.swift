@@ -1,6 +1,6 @@
 //
 //  YPDrawSignatureView.swift
-//  drawtest
+//  Draw a signature into an UIView
 //
 //  Created by Geert-Jan Nilsen on 06/11/14.
 //  Copyright (c) 2014 Yuppielabel.com All rights reserved.
