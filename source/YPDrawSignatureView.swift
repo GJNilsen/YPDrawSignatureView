@@ -72,7 +72,6 @@ class BetterSignatureView: UIView {
             
         } else if (touch.state == UIGestureRecognizerState.Ended || touch.state == UIGestureRecognizerState.Cancelled) {
             
-            //self.path.moveToPoint(touchPoint)
             self.path.addLineToPoint(touchPoint)
             self.ctr = 0
             self.setNeedsDisplay()
