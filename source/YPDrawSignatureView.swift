@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BetterSignatureView: UIView {
+class YPDrawSignatureView: UIView {
     
     // MARK: - Properties
     var path = UIBezierPath()
