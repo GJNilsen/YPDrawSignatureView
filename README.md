@@ -17,6 +17,10 @@ Add YPDrawSignature.swift to your project
 Geert-Jan Nilsen ( gert@yuppielabel.com )
 [Yuppielabel](http://yuppielabel.com)
 
+## Contributors
+
+See [Contributors](https://github.com/yuppielabel/YPDrawSignatureView/graphs/contributors).
+
 ## License
 
-YPDrawSignatureView is available under the MIT license. See the LICENSE file for more info.
+YPDrawSignatureView is available under the MIT license. See the LICENSE file for more info. Feel free to fork and modify.
