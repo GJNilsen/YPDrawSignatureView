@@ -8,28 +8,39 @@
 
 import UIKit
 
-class YPDrawSignatureView: UIView {
+@IBInspectable
+public class YPDrawSignatureView: UIView {
+    
+    // MARK: - IBInspectable Properties
+    @IBInspectable public var lineWidth: CGFloat = 2.0 {
+        didSet {
+            self.path.lineWidth = lineWidth
+        }
+    }
+    @IBInspectable public var strokeColor: UIColor = UIColor.blackColor()
+    @IBInspectable public var signatureBackgroundColor: UIColor = UIColor.whiteColor()
     
     // MARK: - Properties
-    var path = UIBezierPath()
-    var pts = [CGPoint](count: 5, repeatedValue: CGPoint())
-    var ctr = 0
+    private var path = UIBezierPath()
+    private var pts = [CGPoint](count: 5, repeatedValue: CGPoint())
+    private var ctr = 0
     
     // MARK: - Init
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.backgroundColor = UIColor.whiteColor()
-        self.path.lineWidth = 2.0
+        self.backgroundColor = self.signatureBackgroundColor
+        self.path.lineWidth = self.lineWidth
     }
     
     // MARK: - Draw
-    override func drawRect(rect: CGRect) {
+    override public func drawRect(rect: CGRect) {
+        self.strokeColor.setStroke()
         self.path.stroke()
     }
     
     // MARK: - Gesture Recognizers
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let firstTouch = touches.first{
             let touchPoint = firstTouch.locationInView(self)
             self.ctr = 0
@@ -37,7 +48,7 @@ class YPDrawSignatureView: UIView {
         }
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let firstTouch = touches.first{
             let touchPoint = firstTouch.locationInView(self)
             self.ctr++
@@ -57,7 +68,7 @@ class YPDrawSignatureView: UIView {
         }
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override public func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if self.ctr == 0{
             let touchPoint = self.pts[0]
             self.path.moveToPoint(CGPointMake(touchPoint.x-1.0,touchPoint.y))
@@ -71,13 +82,13 @@ class YPDrawSignatureView: UIView {
     // MARK: - Helpers
     
     // MARK: Clear the Signature View
-    func clearSignature() {
+    func public clearSignature() {
         self.path.removeAllPoints()
         self.setNeedsDisplay()
     }
     
     // MARK: Save the Signature as an UIImage
-    func getSignature() ->UIImage {
+    func public getSignature() ->UIImage {
         UIGraphicsBeginImageContext(CGSizeMake(self.bounds.size.width, self.bounds.size.height))
         self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let signature: UIImage = UIGraphicsGetImageFromCurrentImageContext()
