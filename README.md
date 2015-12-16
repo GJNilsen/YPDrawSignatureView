@@ -19,7 +19,7 @@ Geert-Jan Nilsen ( gert@yuppielabel.com )
 
 ## Contributors
 
-See [Contributors](https://github.com/yuppielabel/YPDrawSignatureView/graphs/contributors).
+[TyrantFox](https://github.com/TyrantFox).
 
 ## License
 
