@@ -20,7 +20,7 @@ Add YPDrawSignature.swift to your project
 
 ## Support and Issues
 
-Please only file issues on GitHub for bugs, use StackOverflow for support related questions.
+GitHub Issues are for filing bug reports and feature requests only. Use [StackOverflow](http://stackoverflow.com/search?q=YPDrawSignatureView) for support related questions.
 
 ## Author
 
