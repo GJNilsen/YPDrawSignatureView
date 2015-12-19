@@ -10,17 +10,9 @@ The class supports Swift 2.0
 
 Add a new `UIView` where you want the signature capture field. Set its class to `YPDrawSignatureView`, and connect it to an `@IBOutlet` property in your `UIViewController`. For saving and clearing the signature, add two buttons to your view controller. Hook each button up to an `@IBAction` function.
 
-### YourViewController
+## Example Project
 
-```swift
-@IBOutlet weak var drawSignatureView: YPDrawSignatureView!
-```
-
-After connecting the class to its `@IBOutlet`, you use the following code to clear and access the signature:
-```swift
-self.drawSignatureView.clearSignature()
-self.drawSignatureView.saveSignature()
-```
+Check out the example project for more information on how to save signatures and how to clear the signature view.
 
 ## Installation
 
