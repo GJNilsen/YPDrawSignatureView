@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBInspectable
+@IBDesignable
 public class YPDrawSignatureView: UIView {
     
     // MARK: - IBInspectable Properties
@@ -82,13 +82,13 @@ public class YPDrawSignatureView: UIView {
     // MARK: - Helpers
     
     // MARK: Clear the Signature View
-    func public clearSignature() {
+    public func clearSignature() {
         self.path.removeAllPoints()
         self.setNeedsDisplay()
     }
     
     // MARK: Save the Signature as an UIImage
-    func public getSignature() ->UIImage {
+    public func getSignature() ->UIImage {
         UIGraphicsBeginImageContext(CGSizeMake(self.bounds.size.width, self.bounds.size.height))
         self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let signature: UIImage = UIGraphicsGetImageFromCurrentImageContext()
