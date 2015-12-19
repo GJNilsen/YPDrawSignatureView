@@ -8,19 +8,18 @@
 
 import UIKit
 
-@IBDesignable
 public class YPDrawSignatureView: UIView {
     
-    // MARK: - IBInspectable Properties
-    @IBInspectable public var lineWidth: CGFloat = 2.0 {
+    // MARK: - Public properties
+    public var lineWidth: CGFloat = 2.0 {
         didSet {
             self.path.lineWidth = lineWidth
         }
     }
-    @IBInspectable public var strokeColor: UIColor = UIColor.blackColor()
-    @IBInspectable public var signatureBackgroundColor: UIColor = UIColor.whiteColor()
+    public var strokeColor: UIColor = UIColor.blackColor()
+    public var signatureBackgroundColor: UIColor = UIColor.whiteColor()
     
-    // MARK: - Properties
+    // MARK: - Private properties
     private var path = UIBezierPath()
     private var pts = [CGPoint](count: 5, repeatedValue: CGPoint())
     private var ctr = 0
@@ -39,7 +38,7 @@ public class YPDrawSignatureView: UIView {
         self.path.stroke()
     }
     
-    // MARK: - Gesture Recognizers
+    // MARK: - Touch handeling functions
     override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let firstTouch = touches.first{
             let touchPoint = firstTouch.locationInView(self)
