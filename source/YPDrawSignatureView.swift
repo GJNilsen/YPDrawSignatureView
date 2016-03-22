@@ -50,7 +50,7 @@ public class YPDrawSignatureView: UIView {
     override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let firstTouch = touches.first{
             let touchPoint = firstTouch.locationInView(self)
-            self.ctr++
+            self.ctr += 1
             self.pts[self.ctr] = touchPoint
             if (self.ctr == 4) {
                 self.pts[3] = CGPointMake((self.pts[2].x + self.pts[4].x)/2.0, (self.pts[2].y + self.pts[4].y)/2.0)
