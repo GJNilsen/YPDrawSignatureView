@@ -94,4 +94,18 @@ public class YPDrawSignatureView: UIView {
         UIGraphicsEndImageContext()
         return signature
     }
+    
+    // MARK: Save the Signature (cropped of outside white space) as a UIImage
+    public func getSignatureCropped() ->UIImage {
+        // Get the UIView full render
+        let fullRender = getSignature()
+        
+        // Get a CGImage reference of the signature for just the bounds of the bezier path
+        let imageRef: CGImageRef = CGImageCreateWithImageInRect(fullRender.CGImage, path.bounds)!
+        
+        // Create a UIImage with the cropped CGImage
+        let signature = UIImage(CGImage: imageRef)
+        
+        return signature
+    }
 }
