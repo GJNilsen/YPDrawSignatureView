@@ -49,7 +49,7 @@ public class YPDrawSignatureView: UIView {
   override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
     if let firstTouch = touches.first{
       let touchPoint = firstTouch.locationInView(self)
-      self.ctr++
+      self.ctr += 1
       self.pts[self.ctr] = touchPoint
       if (self.ctr == 4) {
         self.pts[3] = CGPointMake((self.pts[2].x + self.pts[4].x)/2.0, (self.pts[2].y + self.pts[4].y)/2.0)
@@ -91,6 +91,20 @@ public class YPDrawSignatureView: UIView {
     self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
     let signature: UIImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
+    return signature
+  }
+
+  // MARK: Save the Signature (cropped of outside white space) as a UIImage
+  public func getSignatureCropped() ->UIImage {
+    // Get the UIView full render
+    let fullRender = getSignature()
+        
+    // Get a CGImage reference of the signature for just the bounds of the bezier path
+    let imageRef: CGImageRef = CGImageCreateWithImageInRect(fullRender.CGImage, path.bounds)!
+    
+    // Create a UIImage with the cropped CGImage
+    let signature = UIImage(CGImage: imageRef)
+    
     return signature
   }
 }
