@@ -30,6 +30,7 @@ Geert-Jan Nilsen ( gert@yuppielabel.com )
 ## Contributors
 
 [TyrantFox](https://github.com/TyrantFox).
+[gingofthesouth](https://github.com/gingofthesouth).
 
 ## License
 
