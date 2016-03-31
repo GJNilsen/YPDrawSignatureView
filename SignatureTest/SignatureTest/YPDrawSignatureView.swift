@@ -1,10 +1,10 @@
+// YPDrawSignatureView is open source
 //
-//  YPDrawSignatureView.swift
-//  Draw a signature into an UIView
+// Copyright (c) 2014 - 2016 Yuppielabel and the project contributors
+// Available under the MIT license
 //
-//  Created by Geert-Jan Nilsen on 06/11/14.
-//  Copyright (c) 2014 Yuppielabel.com All rights reserved.
-//
+// See https://github.com/yuppielabel/YPDrawSignatureView/blob/master/LICENSE for license information
+// See https://github.com/yuppielabel/YPDrawSignatureView/blob/master/README.md for the list project contributors
 
 import UIKit
 
@@ -18,13 +18,13 @@ public class YPDrawSignatureView: UIView {
         }
     }
     
-    @IBInspectable public var strokeColor: UIColor = UIColor.blackColor() {
+    @IBInspectable public var strokeColor = UIColor.blackColor() {
         didSet {
             self.strokeColor.setStroke()
         }
     }
     
-    public var signatureBackgroundColor: UIColor = UIColor.whiteColor() {
+    public var signatureBackgroundColor = UIColor.whiteColor() {
         didSet {
             self.backgroundColor = signatureBackgroundColor
         }
@@ -67,16 +67,16 @@ public class YPDrawSignatureView: UIView {
     }
     
     // MARK: - Touch handling functions
-    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if let firstTouch = touches.first{
+    override public func touchesBegan(touches: Set <UITouch>, withEvent event: UIEvent?) {
+        if let firstTouch = touches.first {
             let touchPoint = firstTouch.locationInView(self)
             self.ctr = 0
             self.pts[0] = touchPoint
         }
     }
     
-    override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if let firstTouch = touches.first{
+    override public func touchesMoved(touches: Set <UITouch>, withEvent event: UIEvent?) {
+        if let firstTouch = touches.first {
             let touchPoint = firstTouch.locationInView(self)
             self.ctr += 1
             self.pts[self.ctr] = touchPoint
@@ -95,8 +95,8 @@ public class YPDrawSignatureView: UIView {
         }
     }
     
-    override public func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if self.ctr == 0{
+    override public func touchesEnded(touches: Set <UITouch>, withEvent event: UIEvent?) {
+        if self.ctr == 0 {
             let touchPoint = self.pts[0]
             self.path.moveToPoint(CGPointMake(touchPoint.x-1.0,touchPoint.y))
             self.path.addLineToPoint(CGPointMake(touchPoint.x+1.0,touchPoint.y))
@@ -106,30 +106,31 @@ public class YPDrawSignatureView: UIView {
         }
     }
     
-    // MARK: - Helpers
+    // MARK: - Methods for interacting with Signature View
     
-    // MARK: Clear the Signature View
+    // Clear the Signature View
     public func clearSignature() {
         self.path.removeAllPoints()
         self.setNeedsDisplay()
     }
     
-    // MARK: Save the Signature as an UIImage
-    public func getSignature() ->UIImage {
+    // Save the Signature as an UIImage
+    public func getSignature() -> UIImage {
         UIGraphicsBeginImageContext(CGSizeMake(self.bounds.size.width, self.bounds.size.height))
         self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let signature: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let signature = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
         return signature
     }
     
-    // MARK: Save the Signature (cropped of outside white space) as a UIImage
-    public func getSignatureCropped() ->UIImage {
+    // Save the Signature (cropped of outside white space) as a UIImage
+    public func getSignatureCropped() -> UIImage {
         // Get the UIView full render
         let fullRender = getSignature()
         
         // Get a CGImage reference of the signature for just the bounds of the bezier path
-        let imageRef: CGImageRef = CGImageCreateWithImageInRect(fullRender.CGImage, path.bounds)!
+        let imageRef = CGImageCreateWithImageInRect(fullRender.CGImage, path.bounds)!
         
         // Create a UIImage with the cropped CGImage
         let signature = UIImage(CGImage: imageRef)
