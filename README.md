@@ -16,6 +16,60 @@ Add a new `UIView` where you want the signature capture field. Set its class to 
 
 With the view selected, choose the IB Attributes Inspector panel to set custom values, or set them in code where you initialize the signature view.
 
+#### Methods
+
+* clearSignature()
+
+This clears the view
+
+* getSignature()
+
+This returns the signature with the bounds of the view
+
+* getSignatureCropped()
+
+This returns the signature with the bounds of the signature
+
+#### Properties
+
+* containsSignature: Bool
+
+This is a computed read-only property returning `true` if the view actually contains a signature
+
+* strokeWidth: CGFloat
+
+Sets the width of the signature stroke
+
+* strokeColor: UIColor
+
+Sets the UIColor of the signature stroke
+
+* signatureBackgroundColor: UIColor
+
+Sets the background UIColor of the view
+
+#### Example Code
+
+The following sample code checks if there is a signature in the view before getting it.
+
+```
+@IBOutlet weak var drawSignatureView: YPDrawSignatureView!
+
+@IBAction func save(sender: AnyObject) {
+    // Checking if the view actually contains a signature
+    if drawSignatureView.containsSignature {
+        let img = drawSignatureView.getSignatureCropped()
+        // Do something with img
+    } else {
+        // Alert the user or do something else
+    }
+}
+
+@IBAction func clear(sender: AnyObject) {
+    drawSignatureView.clearSignature
+}
+```
+
 ## Example Project
 
 Check out the example project for more information on how to save signatures and how to clear the signature view.
