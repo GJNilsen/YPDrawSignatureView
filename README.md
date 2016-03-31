@@ -18,33 +18,33 @@ With the view selected, choose the IB Attributes Inspector panel to set custom v
 
 #### Methods
 
-* clearSignature()
+* `clearSignature()`
 
 This clears the view
 
-* getSignature()
+* `getSignature()`
 
 This returns the signature with the bounds of the view
 
-* getSignatureCropped()
+* `getSignatureCropped()`
 
 This returns the signature with the bounds of the signature
 
 #### Properties
 
-* containsSignature: Bool
+* `containsSignature: Bool`
 
 This is a computed read-only property returning `true` if the view actually contains a signature
 
-* strokeWidth: CGFloat
+* `strokeWidth: CGFloat`
 
 Sets the width of the signature stroke
 
-* strokeColor: UIColor
+* `strokeColor: UIColor`
 
 Sets the UIColor of the signature stroke
 
-* signatureBackgroundColor: UIColor
+* `signatureBackgroundColor: UIColor`
 
 Sets the background UIColor of the view
 
