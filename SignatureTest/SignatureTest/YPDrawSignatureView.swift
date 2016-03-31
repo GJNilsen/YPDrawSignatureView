@@ -30,6 +30,16 @@ public class YPDrawSignatureView: UIView {
         }
     }
     
+    // Redundant Stroke Width property for backwards compatibility
+    public var lineWidth: CGFloat {
+        set {
+            self.strokeWidth = lineWidth
+        }
+        get {
+            return self.strokeWidth
+        }
+    }
+    
     // MARK: - Private properties
     private var path = UIBezierPath()
     private var pts = [CGPoint](count: 5, repeatedValue: CGPoint())
