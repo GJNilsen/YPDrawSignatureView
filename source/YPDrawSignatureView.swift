@@ -18,13 +18,13 @@ public class YPDrawSignatureView: UIView {
         }
     }
     
-    @IBInspectable public var strokeColor = UIColor.blackColor() {
+    @IBInspectable public var strokeColor: UIColor = UIColor.blackColor() {
         didSet {
             self.strokeColor.setStroke()
         }
     }
     
-    public var signatureBackgroundColor = UIColor.whiteColor() {
+    @IBInspectable public var signatureBackgroundColor: UIColor = UIColor.whiteColor() {
         didSet {
             self.backgroundColor = signatureBackgroundColor
         }
