@@ -10,7 +10,7 @@ The class supports Swift 2.2
 
 Add a new `UIView` where you want the signature capture field. Set its class to `YPDrawSignatureView`, and connect it to an `@IBOutlet` property in your `UIViewController`. For saving and clearing the signature, add two buttons to your view controller. Hook each button up to an `@IBAction` function.
 
-![ScreenShot](IBScreenShot.png?raw=true "Interface Builder Attributes Inspector panel")
+![ScreenShot](ibss.png?raw=true "Interface Builder Attributes Inspector panel")
 With the view selected, choose the IB Attributes Inspector panel to set custom values, or set them in code where you initialize the signature view.
 
 ## Example Project
