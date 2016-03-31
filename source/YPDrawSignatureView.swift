@@ -8,16 +8,27 @@
 
 import UIKit
 
+@IBDesignable
 public class YPDrawSignatureView: UIView {
     
     // MARK: - Public properties
-    public var lineWidth: CGFloat = 2.0 {
+    @IBInspectable public var strokeWidth: CGFloat = 2.0 {
         didSet {
-            self.path.lineWidth = lineWidth
+            self.path.lineWidth = strokeWidth
         }
     }
-    public var strokeColor: UIColor = UIColor.blackColor()
-    public var signatureBackgroundColor: UIColor = UIColor.whiteColor()
+    
+    @IBInspectable public var strokeColor: UIColor = UIColor.blackColor() {
+        didSet {
+            self.strokeColor.setStroke()
+        }
+    }
+    
+    public var signatureBackgroundColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            self.backgroundColor = signatureBackgroundColor
+        }
+    }
     
     // MARK: - Private properties
     private var path = UIBezierPath()
@@ -29,7 +40,14 @@ public class YPDrawSignatureView: UIView {
         super.init(coder: aDecoder)
         
         self.backgroundColor = self.signatureBackgroundColor
-        self.path.lineWidth = self.lineWidth
+        self.path.lineWidth = self.strokeWidth
+    }
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.backgroundColor = self.signatureBackgroundColor
+        self.path.lineWidth = self.strokeWidth
     }
     
     // MARK: - Draw
@@ -38,7 +56,7 @@ public class YPDrawSignatureView: UIView {
         self.path.stroke()
     }
     
-    // MARK: - Touch handeling functions
+    // MARK: - Touch handling functions
     override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let firstTouch = touches.first{
             let touchPoint = firstTouch.locationInView(self)
