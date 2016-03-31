@@ -22,13 +22,9 @@ Add YPDrawSignature.swift to your project
 
 GitHub Issues are for filing bug reports and feature requests only. Use [StackOverflow](http://stackoverflow.com/search?q=YPDrawSignatureView) for support related questions and help.
 
-## Author
-
-Geert-Jan Nilsen ( gert@yuppielabel.com )
-[Yuppielabel](http://yuppielabel.com)
-
 ## Contributors
 
+* [Geert-Jan Nilsen](mailto:gj.nilsen@yuppielabel.com) [Yuppielabel](http://yuppielabel.com)
 * [TyrantFox](https://github.com/TyrantFox).
 * [gingofthesouth](https://github.com/gingofthesouth).
 
