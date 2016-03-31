@@ -66,7 +66,7 @@ The following sample code checks if there is a signature in the view before gett
 }
 
 @IBAction func clear(sender: AnyObject) {
-    drawSignatureView.clearSignature
+    drawSignatureView.clearSignature()
 }
 ```
 
