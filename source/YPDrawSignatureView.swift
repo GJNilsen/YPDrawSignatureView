@@ -36,7 +36,7 @@ public class YPDrawSignatureView: UIView {
             if self.path.empty {
                 return false
             } else {
-                return true {
+                return true
             }
         }
     }
