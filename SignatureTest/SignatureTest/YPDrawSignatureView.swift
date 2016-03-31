@@ -33,10 +33,10 @@ public class YPDrawSignatureView: UIView {
     // Computed Property returns true if the view actually contains a signature
     public var containsSignature: Bool {
         get {
-            if self.pts.count < 3 {
-                return true
-            } else {
+            if self.path.empty {
                 return false
+            } else {
+                return true {
             }
         }
     }
@@ -137,15 +137,20 @@ public class YPDrawSignatureView: UIView {
     
     // Save the Signature (cropped of outside white space) as a UIImage
     public func getSignatureCropped() -> UIImage {
-        // Get the UIView full render
-        let fullRender = getSignature()
+    
+        if self.path.empty {
+            return getSignature()
+        } else {
+            // Get the UIView full render
+            let fullRender = getSignature()
         
-        // Get a CGImage reference of the signature for just the bounds of the bezier path
-        let imageRef = CGImageCreateWithImageInRect(fullRender.CGImage, path.bounds)!
+            // Get a CGImage reference of the signature for just the bounds of the bezier path
+            let imageRef = CGImageCreateWithImageInRect(fullRender.CGImage, path.bounds)!
         
-        // Create a UIImage with the cropped CGImage
-        let signature = UIImage(CGImage: imageRef)
+            // Create a UIImage with the cropped CGImage
+            let signature = UIImage(CGImage: imageRef)
         
-        return signature
+            return signature
+        }
     }
 }
