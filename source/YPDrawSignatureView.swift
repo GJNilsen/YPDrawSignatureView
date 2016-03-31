@@ -30,6 +30,17 @@ public class YPDrawSignatureView: UIView {
         }
     }
     
+    // Computed Property returns true if the view actually contains a signature
+    public var containsSignature: Bool {
+        get {
+            if self.pts.count < 3 {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    
     // Redundant Stroke Width property for backwards compatibility
     public var lineWidth: CGFloat {
         set {
