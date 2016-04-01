@@ -48,12 +48,29 @@ Sets the UIColor of the signature stroke
 
 Sets the background UIColor of the view
 
+#### Optional Protocol Methods
+
+* `startedDrawing()`
+
+Notifies the delegate when someone starts a stroke in the view
+
+* `finishedDrawing()`
+
+Notifies the delegate when someone finishes a stroke in the view
+
 #### Example Code
 
 The following sample code checks if there is a signature in the view before getting it.
 
 ```
 @IBOutlet weak var drawSignatureView: YPDrawSignatureView!
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view, typically from a nib.
+    
+    drawSignatureView.delegate = self
+}
 
 @IBAction func save(sender: AnyObject) {
     // Checking if the view actually contains a signature
@@ -67,6 +84,15 @@ The following sample code checks if there is a signature in the view before gett
 
 @IBAction func clear(sender: AnyObject) {
     drawSignatureView.clearSignature()
+}
+
+// MARK: - Optional delegate methods
+func startedDrawing() {
+    // Do something when start drawing
+}
+
+func finishedDrawing() {
+    // Do something else when finished drawing
 }
 ```
 
