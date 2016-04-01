@@ -1,4 +1,5 @@
 // YPDrawSignatureView is open source
+// Version 0.1.1
 //
 // Copyright (c) 2014 - 2016 Yuppielabel and the project contributors
 // Available under the MIT license
@@ -38,16 +39,6 @@ public class YPDrawSignatureView: UIView {
             } else {
                 return true
             }
-        }
-    }
-    
-    // Redundant Stroke Width property for backwards compatibility
-    public var lineWidth: CGFloat {
-        set {
-            self.strokeWidth = lineWidth
-        }
-        get {
-            return self.strokeWidth
         }
     }
     
@@ -126,31 +117,34 @@ public class YPDrawSignatureView: UIView {
     }
     
     // Save the Signature as an UIImage
-    public func getSignature() -> UIImage {
+    public func getSignature() -> UIImage? {
         UIGraphicsBeginImageContext(CGSizeMake(self.bounds.size.width, self.bounds.size.height))
-        self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let signature = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return signature
-    }
-    
-    // Save the Signature (cropped of outside white space) as a UIImage
-    public func getSignatureCropped() -> UIImage {
-    
-        if self.path.empty {
-            return getSignature()
-        } else {
-            // Get the UIView full render
-            let fullRender = getSignature()
-        
-            // Get a CGImage reference of the signature for just the bounds of the bezier path
-            let imageRef = CGImageCreateWithImageInRect(fullRender.CGImage, path.bounds)!
-        
-            // Create a UIImage with the cropped CGImage
-            let signature = UIImage(CGImage: imageRef)
-        
+        if let context = UIGraphicsGetCurrentContext() {
+            self.layer.renderInContext(context)
+            let signature = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
             return signature
+        } else {
+            return nil
         }
     }
+  
+    // Save the Signature (cropped of outside white space) as a UIImage
+    public func getSignatureCropped() -> UIImage? {
+        if let fullRender = getSignature() {
+            if let imageRef = CGImageCreateWithImageInRect(fullRender.CGImage, path.bounds) {
+                return UIImage(CGImage: imageRef)
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+}
+
+// MARK: - Optional Protocol Methods for YPDrawSignatureViewDelegate
+@objc protocol YPDrawSignatureViewDelegate: class {
+    optional func startedDrawing()
+    optional func finishedDrawing()
 }
