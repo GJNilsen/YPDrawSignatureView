@@ -63,36 +63,39 @@ Notifies the delegate when someone finishes a stroke in the view
 The following sample code checks if there is a signature in the view before getting it.
 
 ```
-@IBOutlet weak var drawSignatureView: YPDrawSignatureView!
+class MyViewController: UIViewController, YPDrawSignatureViewDelegate {
 
-override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    @IBOutlet weak var drawSignatureView: YPDrawSignatureView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
     
-    drawSignatureView.delegate = self
-}
-
-@IBAction func save(sender: AnyObject) {
-    // Checking if the view actually contains a signature
-    if drawSignatureView.containsSignature {
-        let img = drawSignatureView.getSignatureCropped()
-        // Do something with img
-    } else {
-        // Alert the user or do something else
+        drawSignatureView.delegate = self
     }
-}
 
-@IBAction func clear(sender: AnyObject) {
-    drawSignatureView.clearSignature()
-}
+    @IBAction func save(sender: AnyObject) {
+        // Checking if the view actually contains a signature
+        if drawSignatureView.containsSignature {
+            let img = drawSignatureView.getSignatureCropped()
+            // Do something with img
+        } else {
+            // Alert the user or do something else
+        }
+    }
 
-// MARK: - Optional delegate methods
-func startedDrawing() {
-    // Do something when start drawing
-}
+    @IBAction func clear(sender: AnyObject) {
+        drawSignatureView.clearSignature()
+    }
 
-func finishedDrawing() {
-    // Do something else when finished drawing
+    // MARK: - Optional delegate methods
+    func startedDrawing() {
+        // Do something when start drawing
+    }
+
+    func finishedDrawing() {
+        // Do something else when finished drawing
+    }
 }
 ```
 
