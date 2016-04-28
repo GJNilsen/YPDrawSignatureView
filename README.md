@@ -89,11 +89,11 @@ class MyViewController: UIViewController, YPDrawSignatureViewDelegate {
     }
 
     // MARK: - Optional delegate methods
-    func startedDrawing() {
+    func startedSignatureDrawing() {
         // Do something when start drawing
     }
 
-    func finishedDrawing() {
+    func finishedSignatureDrawing() {
         // Do something else when finished drawing
     }
 }
