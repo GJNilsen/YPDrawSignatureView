@@ -43,11 +43,11 @@ class ViewController: UIViewController, YPDrawSignatureViewDelegate {
   }
   
   // The delegate methods gives feedback to the instanciating class
-  func finishedDrawing() {
+  func finishedSignatureDrawing() {
     print("Finished")
   }
   
-  func startedDrawing() {
+  func startedSignatureDrawing() {
     print("Started")
   }
 
