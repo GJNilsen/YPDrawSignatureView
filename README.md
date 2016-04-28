@@ -50,11 +50,11 @@ Sets the background UIColor of the view
 
 #### Optional Protocol Methods
 
-* `startedDrawing()`
+* `startedSignatureDrawing()`
 
 Notifies the delegate when someone starts a stroke in the view
 
-* `finishedDrawing()`
+* `finishedSignatureDrawing()`
 
 Notifies the delegate when someone finishes a stroke in the view
 
