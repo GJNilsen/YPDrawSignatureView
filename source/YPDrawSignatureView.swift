@@ -12,6 +12,8 @@ import UIKit
 @IBDesignable
 public class YPDrawSignatureView: UIView {
     
+    weak var delegate: YPDrawSignatureViewDelegate!
+    
     // MARK: - Public properties
     @IBInspectable public var strokeWidth: CGFloat = 2.0 {
         didSet {
@@ -75,6 +77,10 @@ public class YPDrawSignatureView: UIView {
             self.ctr = 0
             self.pts[0] = touchPoint
         }
+        
+        if let delegate = self.delegate {
+            delegate.startedSignatureDrawing!()
+        }
     }
     
     override public func touchesMoved(touches: Set <UITouch>, withEvent event: UIEvent?) {
@@ -106,6 +112,10 @@ public class YPDrawSignatureView: UIView {
         } else {
             self.ctr = 0
         }
+        
+        if let delegate = self.delegate {
+            delegate.finishedSignatureDrawing!()
+        }
     }
     
     // MARK: - Methods for interacting with Signature View
@@ -128,7 +138,7 @@ public class YPDrawSignatureView: UIView {
             return nil
         }
     }
-  
+    
     // Save the Signature (cropped of outside white space) as a UIImage
     public func getSignatureCropped() -> UIImage? {
         if let fullRender = getSignature() {
@@ -145,6 +155,6 @@ public class YPDrawSignatureView: UIView {
 
 // MARK: - Optional Protocol Methods for YPDrawSignatureViewDelegate
 @objc protocol YPDrawSignatureViewDelegate: class {
-    optional func startedDrawing()
-    optional func finishedDrawing()
+    optional func startedSignatureDrawing()
+    optional func finishedSignatureDrawing()
 }
