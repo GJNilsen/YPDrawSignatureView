@@ -55,6 +55,7 @@ public class YPDrawSignatureView: UIView {
         
         self.backgroundColor = self.signatureBackgroundColor
         self.path.lineWidth = self.strokeWidth
+        self.path.lineJoinStyle = CGLineJoin.Round
     }
     
     override public init(frame: CGRect) {
@@ -62,6 +63,7 @@ public class YPDrawSignatureView: UIView {
         
         self.backgroundColor = self.signatureBackgroundColor
         self.path.lineWidth = self.strokeWidth
+        self.path.lineJoinStyle = CGLineJoin.Round
     }
     
     // MARK: - Draw
