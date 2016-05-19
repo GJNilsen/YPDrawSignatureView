@@ -129,29 +129,31 @@ public class YPDrawSignatureView: UIView {
     }
     
     // Save the Signature as an UIImage
-    public func getSignature() -> UIImage? {
-        UIGraphicsBeginImageContext(CGSizeMake(self.bounds.size.width, self.bounds.size.height))
-        if let context = UIGraphicsGetCurrentContext() {
-            self.layer.renderInContext(context)
-            let signature = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            return signature
-        } else {
-            return nil
-        }
+    public func getSignature(scale scale:CGFloat = 1) -> UIImage? {
+        if !containsSignature { return nil }
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, scale)
+        self.path.stroke()
+        let signature = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return signature
     }
     
     // Save the Signature (cropped of outside white space) as a UIImage
-    public func getSignatureCropped() -> UIImage? {
-        if let fullRender = getSignature() {
-            if let imageRef = CGImageCreateWithImageInRect(fullRender.CGImage, path.bounds) {
-                return UIImage(CGImage: imageRef)
-            } else {
-                return nil
-            }
-        } else {
-            return nil
-        }
+    public func getSignatureCropped(scale scale:CGFloat = 1) -> UIImage? {
+        guard let fullRender = getSignature(scale:scale) else { return nil }
+        let bounds = scaleRect(path.bounds.insetBy(dx: -strokeWidth/2, dy: -strokeWidth/2), byFactor: scale)
+        guard let imageRef = CGImageCreateWithImageInRect(fullRender.CGImage, bounds) else { return nil }
+        return UIImage(CGImage: imageRef)
+    }
+    
+    func scaleRect(rect: CGRect, byFactor factor: CGFloat) -> CGRect
+    {
+        var scaledRect = rect
+        scaledRect.origin.x *= factor
+        scaledRect.origin.y *= factor
+        scaledRect.size.width *= factor
+        scaledRect.size.height *= factor
+        return scaledRect
     }
 }
 

@@ -32,7 +32,7 @@ class ViewController: UIViewController, YPDrawSignatureViewDelegate {
   
   @IBAction func saveSignature(sender: UIButton) {
     // Getting the Signature Image from self.drawSignatureView using the method getSignature().
-    if let signatureImage = self.drawSignatureView.getSignature() {
+    if let signatureImage = self.drawSignatureView.getSignature(scale: 10) {
       // Saving signatureImage from the line above to the Photo Roll.
       // The first time you do this, the app asks for access to your pictures.
       UIImageWriteToSavedPhotosAlbum(signatureImage, nil, nil, nil)
