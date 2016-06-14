@@ -8,16 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController, YPDrawSignatureViewDelegate {
+class ViewController: UIViewController, YPSignatureDelegate {
 
   // Connect this Outlet to the Signature View
-  @IBOutlet weak var drawSignatureView: YPDrawSignatureView!
+  @IBOutlet weak var signatureView: YPDrawSignatureView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
-    drawSignatureView.delegate = self
+    signatureView.delegate = self
   }
 
   override func didReceiveMemoryWarning() {
@@ -25,31 +25,30 @@ class ViewController: UIViewController, YPDrawSignatureViewDelegate {
     // Dispose of any resources that can be recreated.
   }
 
-  @IBAction func clearSignature(sender: UIButton) {
+  @IBAction func clearSignature(_ sender: UIButton) {
     // This is how the signature gets cleared
-    self.drawSignatureView.clearSignature()
+    self.signatureView.clear()
   }
   
-  @IBAction func saveSignature(sender: UIButton) {
+  @IBAction func saveSignature(_ sender: UIButton) {
     // Getting the Signature Image from self.drawSignatureView using the method getSignature().
-    if let signatureImage = self.drawSignatureView.getSignature(scale: 10) {
+    if let signatureImage = self.signatureView.getSignature(scale: 10) {
       // Saving signatureImage from the line above to the Photo Roll.
       // The first time you do this, the app asks for access to your pictures.
       UIImageWriteToSavedPhotosAlbum(signatureImage, nil, nil, nil)
     
       // Since the Signature is now saved to the Photo Roll, the View can be cleared anyway.
-      self.drawSignatureView.clearSignature()
+      self.signatureView.clear()
     }
   }
   
   // The delegate methods gives feedback to the instanciating class
-  func finishedSignatureDrawing() {
+  func finishedDrawing() {
     print("Finished")
   }
   
-  func startedSignatureDrawing() {
+  func startedDrawing() {
     print("Started")
   }
 
 }
-
