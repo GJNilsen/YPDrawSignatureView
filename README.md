@@ -8,6 +8,9 @@ Inspired by [Capture a Signature on iOS](https://www.altamiracorp.com/blog/emplo
 
 The class supports Swift 2.2
 
+- Swift 3.0 will be supported
+- Swift 2.3 will not be supported
+
 ## Usage
 
 Add a new `UIView` where you want the signature capture field. Set its class to `YPDrawSignatureView`, and connect it to an `@IBOutlet` property in your `UIViewController`. For saving and clearing the signature, add two buttons to your view controller. Hook each button up to an `@IBAction` function.
