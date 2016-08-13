@@ -1,10 +1,11 @@
+// YPDrawSignatureView is open source
+// Version 0.2.0
 //
-//  ViewController.swift
-//  SignatureTest
+// Copyright (c) 2014 - 2016 Yuppielabel and the project contributors
+// Available under the MIT license
 //
-//  Created by Geert-Jan Korsbø Nilsen on 19/12/15.
-//  Copyright © 2015 Yuppielabel. All rights reserved.
-//
+// See https://github.com/yuppielabel/YPDrawSignatureView/blob/master/LICENSE for license information
+// See https://github.com/yuppielabel/YPDrawSignatureView/blob/master/README.md for the list project contributors
 
 import UIKit
 
