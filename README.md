@@ -4,7 +4,7 @@ Simple class for capturing signatures.
 
 ## Swift 3
 
-The class supports Swift 3 as shipped with Xcode Version 8.0 beta 5 (8S193k).
+The class supports Swift 3 as shipped with Xcode Version 8.0 beta 6 (8S201h).
 The class will be updated for each iteration until the final Swift 3.0 release.
 This branch is not backwards compatible.
 
