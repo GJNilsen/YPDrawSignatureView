@@ -32,13 +32,13 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPw-h6-9Q7">
                                                 <state key="normal" title="Clear"/>
                                                 <connections>
-                                                    <action selector="clearSignature:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R7i-Tb-iLy"/>
+                                                    <action selector="clearSignature:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4az-lt-2Z1"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zdh-YE-RA9">
                                                 <state key="normal" title="Save signature"/>
                                                 <connections>
-                                                    <action selector="saveSignature:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bJS-dx-ggC"/>
+                                                    <action selector="saveSignature:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LV0-XM-Gv2"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -56,7 +56,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="signatureView" destination="u9Q-lu-sya" id="dGW-jX-FRv"/>
+                        <outlet property="signatureView" destination="u9Q-lu-sya" id="Pst-Q1-2hh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
