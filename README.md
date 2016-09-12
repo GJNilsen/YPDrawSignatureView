@@ -4,9 +4,8 @@ Simple class for capturing signatures.
 
 ## Swift 3
 
-The class supports Swift 3 as shipped with Xcode Version 8.0 beta 6 (8S201h).
-The class will be updated for each iteration until the final Swift 3.0 release.
-This branch is not backwards compatible.
+The class supports Swift 3.
+This branch is not backwards compatible, please download the previous release if you can not support Swift 3. Legacy versions will not be updated anymore.
 
 ## Usage
 
@@ -113,7 +112,7 @@ GitHub Issues are for filing bug reports and feature requests only. Use [StackOv
 
 ## Original Author
 
-[Geert-Jan Nilsen](mailto:gj.nilsen@yuppielabel.com) [Yuppielabel](http://yuppielabel.com)
+[Geert-Jan Nilsen](mailto:gj.nilsen@appfact.com) [Yuppielabel](http://yuppielabel.com)
 
 ## Contributors
 
@@ -124,3 +123,10 @@ GitHub Issues are for filing bug reports and feature requests only. Use [StackOv
 ## License
 
 YPDrawSignatureView is available under the MIT license. See the [LICENSE](LICENSE) file for more info. Feel free to fork and modify.
+
+## Update history
+
+### v1.0 - 9/12/16
+
+* More Swifty API
+* Supports Swift 3
