@@ -1,5 +1,5 @@
 // YPDrawSignatureView is open source
-// Version 0.2.2
+// Version 1.0
 //
 // Copyright (c) 2014 - 2016 Yuppielabel and the project contributors
 // Available under the MIT license
@@ -13,6 +13,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        return true
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -38,4 +46,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
 }
-
