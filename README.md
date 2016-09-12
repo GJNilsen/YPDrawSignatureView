@@ -2,11 +2,10 @@
 
 Simple class for capturing signatures.
 
-Inspired by [Capture a Signature on iOS](https://www.altamiracorp.com/blog/employee-posts/capture-a-signature-on-ios) by Jason Harwig, and [Macheads101](https://www.youtube.com/user/macheads101), he has a great [tutorial](https://www.youtube.com/watch?v=8KV1o9hPF5E&list=UU7fIuG6L5EPc9Ijq2_BCmIg) on YouTube.
+## Swift 3
 
-## Swift 2.2
-
-The class supports Swift 2.2
+The class supports Swift 3.
+This branch is not backwards compatible, please download the previous release if you can not support Swift 3. Legacy versions will not be updated anymore.
 
 - Swift 3.0 will be supported
 - Swift 2.3 will not be supported
@@ -21,7 +20,7 @@ With the view selected, choose the IB Attributes Inspector panel to set custom v
 
 #### Methods
 
-* `clearSignature()`
+* `clear()`
 
 This clears the view
 
@@ -29,13 +28,13 @@ This clears the view
 
 This returns the signature with the bounds of the view
 
-* `getSignatureCropped()`
+* `getCroppedSignature()`
 
 This returns the signature with the bounds of the signature
 
 #### Properties
 
-* `containsSignature: Bool`
+* `doesContainSignature: Bool`
 
 This is a computed read-only property returning `true` if the view actually contains a signature
 
@@ -53,11 +52,11 @@ Sets the background UIColor of the view
 
 #### Optional Protocol Methods
 
-* `startedSignatureDrawing()`
+* `startedDrawing()`
 
 Notifies the delegate when someone starts a stroke in the view
 
-* `finishedSignatureDrawing()`
+* `finishedDrawing()`
 
 Notifies the delegate when someone finishes a stroke in the view
 
@@ -66,7 +65,7 @@ Notifies the delegate when someone finishes a stroke in the view
 The following sample code checks if there is a signature in the view before getting it.
 
 ```
-class MyViewController: UIViewController, YPDrawSignatureViewDelegate {
+class MyViewController: UIViewController, YPSignatureDelegate {
 
     @IBOutlet weak var drawSignatureView: YPDrawSignatureView!
 
@@ -79,8 +78,8 @@ class MyViewController: UIViewController, YPDrawSignatureViewDelegate {
 
     @IBAction func save(sender: AnyObject) {
         // Checking if the view actually contains a signature
-        if drawSignatureView.containsSignature {
-            let img = drawSignatureView.getSignatureCropped()
+        if drawSignatureView.doesContainSignature {
+            let img = drawSignatureView.getCroppedSignature()
             // Do something with img
         } else {
             // Alert the user or do something else
@@ -88,15 +87,15 @@ class MyViewController: UIViewController, YPDrawSignatureViewDelegate {
     }
 
     @IBAction func clear(sender: AnyObject) {
-        drawSignatureView.clearSignature()
+        drawSignatureView.clear()
     }
 
     // MARK: - Optional delegate methods
-    func startedSignatureDrawing() {
+    func startedDrawing() {
         // Do something when start drawing
     }
 
-    func finishedSignatureDrawing() {
+    func finishedDrawing() {
         // Do something else when finished drawing
     }
 }
@@ -116,7 +115,7 @@ GitHub Issues are for filing bug reports and feature requests only. Use [StackOv
 
 ## Original Author
 
-[Geert-Jan Nilsen](mailto:gj.nilsen@yuppielabel.com) [Yuppielabel](http://yuppielabel.com)
+[Geert-Jan Nilsen](mailto:gj.nilsen@appfact.com) [Yuppielabel](http://yuppielabel.com)
 
 ## Contributors
 
@@ -127,3 +126,10 @@ GitHub Issues are for filing bug reports and feature requests only. Use [StackOv
 ## License
 
 YPDrawSignatureView is available under the MIT license. See the [LICENSE](LICENSE) file for more info. Feel free to fork and modify.
+
+## Update history
+
+### v1.0 - 9/12/16
+
+* More Swifty API
+* Supports Swift 3

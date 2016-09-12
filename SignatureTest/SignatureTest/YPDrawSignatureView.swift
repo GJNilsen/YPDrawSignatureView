@@ -1,5 +1,5 @@
 // YPDrawSignatureView is open source
-// Version 0.1.2
+// Version 1.0
 //
 // Copyright (c) 2014 - 2016 Yuppielabel and the project contributors
 // Available under the MIT license
@@ -9,10 +9,24 @@
 
 import UIKit
 
+// MARK: Class properties and initialization
+/// # Class: YPDrawSignatureView
+/// Accepts touches and draws an image to an UIView
+/// ## Description
+/// This is an UIView based class for capturing a signature drawn by a finger in iOS.
+/// ## Usage
+/// Add the YPSignatureDelegate to the view to exploit the optional delegate methods
+/// - startedDrawing()
+/// - finishedDrawing()
+/// - Add an @IBOutlet, and set its delegate to self
+/// - Clear the signature field by calling clear() to it
+/// - Retrieve the signature from the field by either calling
+/// - getSignature() or
+/// - getCroppedSignature()
 @IBDesignable
 public class YPDrawSignatureView: UIView {
     
-    weak var delegate: YPDrawSignatureViewDelegate!
+    weak var delegate: YPSignatureDelegate!
     
     // MARK: - Public properties
     @IBInspectable public var strokeWidth: CGFloat = 2.0 {
@@ -21,22 +35,22 @@ public class YPDrawSignatureView: UIView {
         }
     }
     
-    @IBInspectable public var strokeColor: UIColor = UIColor.blackColor() {
+    @IBInspectable public var strokeColor = UIColor.black {
         didSet {
             self.strokeColor.setStroke()
         }
     }
     
-    @IBInspectable public var signatureBackgroundColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable public var signatureBackgroundColor = UIColor.white {
         didSet {
             self.backgroundColor = signatureBackgroundColor
         }
     }
     
     // Computed Property returns true if the view actually contains a signature
-    public var containsSignature: Bool {
+    public var doesContainSignature: Bool {
         get {
-            if self.path.empty {
+            if self.path.isEmpty {
                 return false
             } else {
                 return true
@@ -46,8 +60,8 @@ public class YPDrawSignatureView: UIView {
     
     // MARK: - Private properties
     private var path = UIBezierPath()
-    private var pts = [CGPoint](count: 5, repeatedValue: CGPoint())
-    private var ctr = 0
+    private var points = [CGPoint](repeating: CGPoint(), count: 5)
+    private var controlPoint = 0
     
     // MARK: - Init
     required public init?(coder aDecoder: NSCoder) {
@@ -55,7 +69,7 @@ public class YPDrawSignatureView: UIView {
         
         self.backgroundColor = self.signatureBackgroundColor
         self.path.lineWidth = self.strokeWidth
-        self.path.lineJoinStyle = CGLineJoin.Round
+        self.path.lineJoinStyle = CGLineJoin.round
     }
     
     override public init(frame: CGRect) {
@@ -63,74 +77,74 @@ public class YPDrawSignatureView: UIView {
         
         self.backgroundColor = self.signatureBackgroundColor
         self.path.lineWidth = self.strokeWidth
-        self.path.lineJoinStyle = CGLineJoin.Round
+        self.path.lineJoinStyle = CGLineJoin.round
     }
     
     // MARK: - Draw
-    override public func drawRect(rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         self.strokeColor.setStroke()
         self.path.stroke()
     }
     
     // MARK: - Touch handling functions
-    override public func touchesBegan(touches: Set <UITouch>, withEvent event: UIEvent?) {
+    override public func touchesBegan(_ touches: Set <UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
-            let touchPoint = firstTouch.locationInView(self)
-            self.ctr = 0
-            self.pts[0] = touchPoint
+            let touchPoint = firstTouch.location(in: self)
+            self.controlPoint = 0
+            self.points[0] = touchPoint
         }
         
         if let delegate = self.delegate {
-            delegate.startedSignatureDrawing!()
+            delegate.startedDrawing!()
         }
     }
     
-    override public func touchesMoved(touches: Set <UITouch>, withEvent event: UIEvent?) {
+    override public func touchesMoved(_ touches: Set <UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
-            let touchPoint = firstTouch.locationInView(self)
-            self.ctr += 1
-            self.pts[self.ctr] = touchPoint
-            if (self.ctr == 4) {
-                self.pts[3] = CGPointMake((self.pts[2].x + self.pts[4].x)/2.0, (self.pts[2].y + self.pts[4].y)/2.0)
-                self.path.moveToPoint(self.pts[0])
-                self.path.addCurveToPoint(self.pts[3], controlPoint1:self.pts[1], controlPoint2:self.pts[2])
+            let touchPoint = firstTouch.location(in: self)
+            self.controlPoint += 1
+            self.points[self.controlPoint] = touchPoint
+            if (self.controlPoint == 4) {
+                self.points[3] = CGPoint(x: (self.points[2].x + self.points[4].x)/2.0, y: (self.points[2].y + self.points[4].y)/2.0)
+                self.path.move(to: self.points[0])
+                self.path.addCurve(to: self.points[3], controlPoint1:self.points[1], controlPoint2:self.points[2])
                 
                 self.setNeedsDisplay()
-                self.pts[0] = self.pts[3]
-                self.pts[1] = self.pts[4]
-                self.ctr = 1
+                self.points[0] = self.points[3]
+                self.points[1] = self.points[4]
+                self.controlPoint = 1
             }
             
             self.setNeedsDisplay()
         }
     }
     
-    override public func touchesEnded(touches: Set <UITouch>, withEvent event: UIEvent?) {
-        if self.ctr == 0 {
-            let touchPoint = self.pts[0]
-            self.path.moveToPoint(CGPointMake(touchPoint.x-1.0,touchPoint.y))
-            self.path.addLineToPoint(CGPointMake(touchPoint.x+1.0,touchPoint.y))
+    override public func touchesEnded(_ touches: Set <UITouch>, with event: UIEvent?) {
+        if self.controlPoint == 0 {
+            let touchPoint = self.points[0]
+            self.path.move(to: CGPoint(x: touchPoint.x-1.0,y: touchPoint.y))
+            self.path.addLine(to: CGPoint(x: touchPoint.x+1.0,y: touchPoint.y))
             self.setNeedsDisplay()
         } else {
-            self.ctr = 0
+            self.controlPoint = 0
         }
         
         if let delegate = self.delegate {
-            delegate.finishedSignatureDrawing!()
+            delegate.finishedDrawing!()
         }
     }
     
     // MARK: - Methods for interacting with Signature View
     
     // Clear the Signature View
-    public func clearSignature() {
+    public func clear() {
         self.path.removeAllPoints()
         self.setNeedsDisplay()
     }
     
     // Save the Signature as an UIImage
-    public func getSignature(scale scale:CGFloat = 1) -> UIImage? {
-        if !containsSignature { return nil }
+    public func getSignature(scale:CGFloat = 1) -> UIImage? {
+        if !doesContainSignature { return nil }
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, scale)
         self.path.stroke()
         let signature = UIGraphicsGetImageFromCurrentImageContext()
@@ -139,14 +153,15 @@ public class YPDrawSignatureView: UIView {
     }
     
     // Save the Signature (cropped of outside white space) as a UIImage
-    public func getSignatureCropped(scale scale:CGFloat = 1) -> UIImage? {
+    public func getCroppedSignature(scale:CGFloat = 1) -> UIImage? {
         guard let fullRender = getSignature(scale:scale) else { return nil }
-        let bounds = scaleRect(path.bounds.insetBy(dx: -strokeWidth/2, dy: -strokeWidth/2), byFactor: scale)
-        guard let imageRef = CGImageCreateWithImageInRect(fullRender.CGImage, bounds) else { return nil }
-        return UIImage(CGImage: imageRef)
+        let bounds = self.scale(path.bounds.insetBy(dx: -strokeWidth/2, dy: -strokeWidth/2), byFactor: scale)
+        guard let imageRef = fullRender.cgImage?.cropping(to: bounds) else { return nil }
+        return UIImage(cgImage: imageRef)
     }
     
-    func scaleRect(rect: CGRect, byFactor factor: CGFloat) -> CGRect
+    
+    private func scale(_ rect: CGRect, byFactor factor: CGFloat) -> CGRect
     {
         var scaledRect = rect
         scaledRect.origin.x *= factor
@@ -158,7 +173,11 @@ public class YPDrawSignatureView: UIView {
 }
 
 // MARK: - Optional Protocol Methods for YPDrawSignatureViewDelegate
-@objc protocol YPDrawSignatureViewDelegate: class {
-    optional func startedSignatureDrawing()
-    optional func finishedSignatureDrawing()
+/// ## YPDrawSignatureViewDelegate Protocol
+/// YPDrawSignatureViewDelegate:
+/// - startedDrawing()
+/// - finishedDrawing()
+@objc protocol YPSignatureDelegate: class {
+    @objc optional func startedDrawing()
+    @objc optional func finishedDrawing()
 }
