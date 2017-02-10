@@ -26,7 +26,7 @@ import UIKit
 @IBDesignable
 public class YPDrawSignatureView: UIView {
     
-    weak var delegate: YPSignatureDelegate!
+    weak var delegate: YPSignatureDelegate?
     
     // MARK: - Public properties
     @IBInspectable public var strokeWidth: CGFloat = 2.0 {
@@ -94,9 +94,9 @@ public class YPDrawSignatureView: UIView {
             self.points[0] = touchPoint
         }
         
-        if let delegate = self.delegate {
-            delegate.startedDrawing!()
-        }
+        
+        delegate?.startedDrawing?()
+        
     }
     
     override public func touchesMoved(_ touches: Set <UITouch>, with event: UIEvent?) {
@@ -129,9 +129,9 @@ public class YPDrawSignatureView: UIView {
             self.controlPoint = 0
         }
         
-        if let delegate = self.delegate {
-            delegate.finishedDrawing!()
-        }
+        
+        delegate?.finishedDrawing?()
+        
     }
     
     // MARK: - Methods for interacting with Signature View
