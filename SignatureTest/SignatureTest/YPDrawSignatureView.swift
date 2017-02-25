@@ -26,7 +26,7 @@ import UIKit
 @IBDesignable
 public class YPDrawSignatureView: UIView {
     
-    weak var delegate: YPSignatureDelegate!
+    weak var delegate: YPSignatureDelegate?
     
     // MARK: - Public properties
     @IBInspectable public var strokeWidth: CGFloat = 2.0 {
@@ -35,13 +35,13 @@ public class YPDrawSignatureView: UIView {
         }
     }
     
-    @IBInspectable public var strokeColor = UIColor.black {
+    @IBInspectable public var strokeColor = .black {
         didSet {
             self.strokeColor.setStroke()
         }
     }
     
-    @IBInspectable public var signatureBackgroundColor = UIColor.white {
+    @IBInspectable public var signatureBackgroundColor = .white {
         didSet {
             self.backgroundColor = signatureBackgroundColor
         }
@@ -95,7 +95,7 @@ public class YPDrawSignatureView: UIView {
         }
         
         if let delegate = self.delegate {
-            delegate.startedDrawing!()
+            delegate.startedDrawing()
         }
     }
     
@@ -130,7 +130,7 @@ public class YPDrawSignatureView: UIView {
         }
         
         if let delegate = self.delegate {
-            delegate.finishedDrawing!()
+            delegate.finishedDrawing()
         }
     }
     
@@ -172,12 +172,12 @@ public class YPDrawSignatureView: UIView {
     }
 }
 
-// MARK: - Optional Protocol Methods for YPDrawSignatureViewDelegate
+// MARK: - Protocol Methods for YPDrawSignatureViewDelegate
 /// ## YPDrawSignatureViewDelegate Protocol
 /// YPDrawSignatureViewDelegate:
 /// - startedDrawing()
 /// - finishedDrawing()
-@objc protocol YPSignatureDelegate: class {
-    @objc optional func startedDrawing()
-    @objc optional func finishedDrawing()
+protocol YPSignatureDelegate: class {
+    func startedDrawing()
+    func finishedDrawing()
 }
