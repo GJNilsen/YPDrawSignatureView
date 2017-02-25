@@ -122,6 +122,7 @@ GitHub Issues are for filing bug reports and feature requests only. Use [StackOv
 * [TyrantFox](https://github.com/TyrantFox).
 * [gingofthesouth](https://github.com/gingofthesouth).
 * [AndreasLey](https://github.com/andreasley).
+* [Andrew Carvajal](https://github.com/andrewcar).
 
 ## License
 
