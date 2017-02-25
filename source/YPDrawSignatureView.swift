@@ -41,12 +41,6 @@ public class YPDrawSignatureView: UIView {
         }
     }
     
-    @IBInspectable public var signatureBackgroundColor = .white {
-        didSet {
-            self.backgroundColor = signatureBackgroundColor
-        }
-    }
-    
     // Computed Property returns true if the view actually contains a signature
     public var doesContainSignature: Bool {
         get {
@@ -67,7 +61,6 @@ public class YPDrawSignatureView: UIView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.backgroundColor = self.signatureBackgroundColor
         self.path.lineWidth = self.strokeWidth
         self.path.lineJoinStyle = CGLineJoin.round
     }
@@ -75,7 +68,6 @@ public class YPDrawSignatureView: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = self.signatureBackgroundColor
         self.path.lineWidth = self.strokeWidth
         self.path.lineJoinStyle = CGLineJoin.round
     }
