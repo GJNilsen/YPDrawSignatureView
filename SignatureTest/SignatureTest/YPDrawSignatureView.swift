@@ -120,7 +120,7 @@ public class YPDrawSignatureView: UIView {
     }
     
     override public func touchesEnded(_ touches: Set <UITouch>, with event: UIEvent?) {
-        if self.controlPoint == 0 {
+        if self.controlPoint < 4 {
             let touchPoint = self.points[0]
             self.path.move(to: CGPoint(x: touchPoint.x-1.0,y: touchPoint.y))
             self.path.addLine(to: CGPoint(x: touchPoint.x+1.0,y: touchPoint.y))
