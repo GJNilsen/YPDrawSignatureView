@@ -130,6 +130,10 @@ YPDrawSignatureView is available under the MIT license. See the [LICENSE](LICENS
 
 ## Update history
 
+#### v1.0.1 - 5/2/17
+
+* Minor bugfix
+
 ### v1.0 - 9/12/16
 
 * More Swifty API
