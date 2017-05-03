@@ -1,11 +1,11 @@
 // YPDrawSignatureView is open source
-// Version 1.0
+// Version 1.0.2
 //
-// Copyright (c) 2014 - 2016 Yuppielabel and the project contributors
+// Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
 //
-// See https://github.com/yuppielabel/YPDrawSignatureView/blob/master/LICENSE for license information
-// See https://github.com/yuppielabel/YPDrawSignatureView/blob/master/README.md for the list project contributors
+// https://github.com/GJNilsen/YPDrawSignatureView/blob/master/LICENSE   License Information
+// https://github.com/GJNilsen/YPDrawSignatureView/blob/master/README.md Project Contributors
 
 import UIKit
 
@@ -24,7 +24,7 @@ import UIKit
 /// - getSignature() or
 /// - getCroppedSignature()
 @IBDesignable
-public class YPDrawSignatureView: UIView {
+final public class YPDrawSignatureView: UIView {
     
     weak var delegate: YPSignatureDelegate?
     
@@ -59,9 +59,9 @@ public class YPDrawSignatureView: UIView {
     }
     
     // MARK: - Private properties
-    private var path = UIBezierPath()
-    private var points = [CGPoint](repeating: CGPoint(), count: 5)
-    private var controlPoint = 0
+    fileprivate var path = UIBezierPath()
+    fileprivate var points = [CGPoint](repeating: CGPoint(), count: 5)
+    fileprivate var controlPoint = 0
     
     // MARK: - Init
     required public init?(coder aDecoder: NSCoder) {
@@ -95,6 +95,9 @@ public class YPDrawSignatureView: UIView {
         }
         
         if let delegate = self.delegate {
+            delegate.didStart()
+            
+            // Deprecated function
             delegate.startedDrawing()
         }
     }
@@ -130,6 +133,9 @@ public class YPDrawSignatureView: UIView {
         }
         
         if let delegate = self.delegate {
+            delegate.didFinish()
+            
+            // Deprecated function
             delegate.finishedDrawing()
         }
     }
@@ -161,7 +167,7 @@ public class YPDrawSignatureView: UIView {
     }
     
     
-    private func scale(_ rect: CGRect, byFactor factor: CGFloat) -> CGRect
+    fileprivate func scale(_ rect: CGRect, byFactor factor: CGFloat) -> CGRect
     {
         var scaledRect = rect
         scaledRect.origin.x *= factor
@@ -170,14 +176,36 @@ public class YPDrawSignatureView: UIView {
         scaledRect.size.height *= factor
         return scaledRect
     }
+    
+    
+    // MARK: - Injection method for Unit Tests only
+    /// This method is used to inject a bezier path for testing
+    /// purposes only. This method is not included in the main
+    /// YPDrawSignatureView.swift source file by intention.
+    func injectBezierPath(_ path: UIBezierPath) {
+        self.path = path
+    }
 }
 
-// MARK: - Protocol Methods for YPDrawSignatureViewDelegate
+// MARK: - Protocol definition for YPDrawSignatureViewDelegate
 /// ## YPDrawSignatureViewDelegate Protocol
 /// YPDrawSignatureViewDelegate:
-/// - startedDrawing()
-/// - finishedDrawing()
+/// - optional didStart()
+/// - optional didFinish()
 protocol YPSignatureDelegate: class {
-    func startedDrawing()
-    func finishedDrawing()
+    func didStart()
+    func didFinish()
+    @available(iOS, deprecated: 9.3, obsoleted: 10.0, message: "Use didStart() instead")
+    func startedDrawing() // This method will be deprecated in a future release and should be avoided.  Instead, use didStart().
+    @available(iOS, deprecated: 9.3, obsoleted: 10.0, message: "Use didFinish() instead")
+    func finishedDrawing() // This method will be deprecated in a future release and should be avoided.  Instead, use didFinish().
+}
+
+extension YPSignatureDelegate {
+    func didStart() {}
+    func didFinish() {}
+    
+    // Deprecated functions
+    func startedDrawing() {}
+    func finishedDrawing() {}
 }

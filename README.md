@@ -130,7 +130,13 @@ YPDrawSignatureView is available under the MIT license. See the [LICENSE](LICENS
 
 ## Update history
 
-### v1.0.1 - 5/2/17
+### v1.0.2 - 5/3/17
+
+* Cleaning up method naming
+* Delegate methods are now optional
+* Sample project updated to latest settings
+
+#### v1.0.1 - 5/2/17
 
 * Minor bugfix
 

@@ -12,9 +12,9 @@
 		4BE489EE1C252F8B00741EAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BE489EC1C252F8B00741EAD /* Main.storyboard */; };
 		4BE489F01C252F8B00741EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BE489EF1C252F8B00741EAD /* Assets.xcassets */; };
 		4BE489F31C252F8B00741EAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BE489F11C252F8B00741EAD /* LaunchScreen.storyboard */; };
-		4BE489FE1C252F8E00741EAD /* SignatureTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE489FD1C252F8E00741EAD /* SignatureTestTests.swift */; };
 		4BE48A091C252F8F00741EAD /* SignatureTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE48A081C252F8F00741EAD /* SignatureTestUITests.swift */; };
 		4BE48A171C252FC600741EAD /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE48A161C252FC600741EAD /* YPDrawSignatureView.swift */; };
+		EACD35371EB929F000C20EF8 /* SignatureViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACD35361EB929F000C20EF8 /* SignatureViewTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,12 +43,12 @@
 		4BE489F21C252F8B00741EAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4BE489F41C252F8C00741EAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BE489F91C252F8E00741EAD /* SignatureTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignatureTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BE489FD1C252F8E00741EAD /* SignatureTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureTestTests.swift; sourceTree = "<group>"; };
 		4BE489FF1C252F8E00741EAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BE48A041C252F8F00741EAD /* SignatureTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignatureTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE48A081C252F8F00741EAD /* SignatureTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureTestUITests.swift; sourceTree = "<group>"; };
 		4BE48A0A1C252F8F00741EAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BE48A161C252FC600741EAD /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
+		EACD35361EB929F000C20EF8 /* SignatureViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureViewTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +113,8 @@
 		4BE489FC1C252F8E00741EAD /* SignatureTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				4BE489FD1C252F8E00741EAD /* SignatureTestTests.swift */,
 				4BE489FF1C252F8E00741EAD /* Info.plist */,
+				EACD35361EB929F000C20EF8 /* SignatureViewTest.swift */,
 			);
 			path = SignatureTestTests;
 			sourceTree = "<group>";
@@ -191,7 +191,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Yuppielabel;
 				TargetAttributes = {
 					4BE489E41C252F8B00741EAD = {
@@ -272,7 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BE489FE1C252F8E00741EAD /* SignatureTestTests.swift in Sources */,
+				EACD35371EB929F000C20EF8 /* SignatureViewTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,8 +332,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -355,7 +357,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -377,8 +379,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -394,7 +398,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -408,7 +412,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SignatureTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuppielabel.SignatureTest;
+				PRODUCT_BUNDLE_IDENTIFIER = SignatureTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -420,7 +424,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SignatureTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuppielabel.SignatureTest;
+				PRODUCT_BUNDLE_IDENTIFIER = SignatureTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
