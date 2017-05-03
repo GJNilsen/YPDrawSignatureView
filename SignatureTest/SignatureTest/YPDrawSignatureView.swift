@@ -1,5 +1,5 @@
 // YPDrawSignatureView is open source
-// Version 1.0.2
+// Version 1.1
 //
 // Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
@@ -8,6 +8,7 @@
 // https://github.com/GJNilsen/YPDrawSignatureView/blob/master/README.md Project Contributors
 
 import UIKit
+import CoreGraphics
 
 // MARK: Class properties and initialization
 /// # Class: YPDrawSignatureView
@@ -41,6 +42,8 @@ final public class YPDrawSignatureView: UIView {
         }
     }
     
+    @objc
+    @available(*, deprecated, renamed: "backgroundColor")
     @IBInspectable public var signatureBackgroundColor: UIColor = .white {
         didSet {
             self.backgroundColor = signatureBackgroundColor
@@ -67,7 +70,6 @@ final public class YPDrawSignatureView: UIView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.backgroundColor = self.signatureBackgroundColor
         self.path.lineWidth = self.strokeWidth
         self.path.lineJoinStyle = CGLineJoin.round
     }
@@ -75,7 +77,6 @@ final public class YPDrawSignatureView: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = self.signatureBackgroundColor
         self.path.lineWidth = self.strokeWidth
         self.path.lineJoinStyle = CGLineJoin.round
     }
@@ -96,9 +97,6 @@ final public class YPDrawSignatureView: UIView {
         
         if let delegate = self.delegate {
             delegate.didStart()
-            
-            // Deprecated function
-            delegate.startedDrawing()
         }
     }
     
@@ -134,9 +132,6 @@ final public class YPDrawSignatureView: UIView {
         
         if let delegate = self.delegate {
             delegate.didFinish()
-            
-            // Deprecated function
-            delegate.finishedDrawing()
         }
     }
     
@@ -177,6 +172,31 @@ final public class YPDrawSignatureView: UIView {
         return scaledRect
     }
     
+    // Saves the Signature as a Vector PDF Data blob
+    public func getPDFSignature() -> Data {
+        
+        let mutableData = CFDataCreateMutable(nil, 0)
+        
+        guard let dataConsumer = CGDataConsumer.init(data: mutableData!) else { fatalError() }
+        
+        var rect = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        
+        guard let pdfContext = CGContext(consumer: dataConsumer, mediaBox: &rect, nil) else { fatalError() }
+
+        pdfContext.beginPDFPage(nil)
+        pdfContext.translateBy(x: 0, y: self.frame.height)
+        pdfContext.scaleBy(x: 1, y: -1)
+        pdfContext.addPath(self.path.cgPath)
+        pdfContext.strokePath()
+        pdfContext.saveGState()
+        pdfContext.endPDFPage()
+        pdfContext.closePDF()
+        
+        let data = mutableData! as Data
+        
+        return data
+    }
+    
     
     // MARK: - Injection method for Unit Tests only
     /// This method is used to inject a bezier path for testing
@@ -192,20 +212,17 @@ final public class YPDrawSignatureView: UIView {
 /// YPDrawSignatureViewDelegate:
 /// - optional didStart()
 /// - optional didFinish()
+@objc
 protocol YPSignatureDelegate: class {
     func didStart()
     func didFinish()
-    @available(iOS, deprecated: 9.3, obsoleted: 10.0, message: "Use didStart() instead")
-    func startedDrawing() // This method will be deprecated in a future release and should be avoided.  Instead, use didStart().
-    @available(iOS, deprecated: 9.3, obsoleted: 10.0, message: "Use didFinish() instead")
-    func finishedDrawing() // This method will be deprecated in a future release and should be avoided.  Instead, use didFinish().
+    @available(*, unavailable, renamed: "didFinish()")
+    func startedDrawing()
+    @available(*, unavailable, renamed: "didFinish()")
+    func finishedDrawing()
 }
 
 extension YPSignatureDelegate {
     func didStart() {}
     func didFinish() {}
-    
-    // Deprecated functions
-    func startedDrawing() {}
-    func finishedDrawing() {}
 }
