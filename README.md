@@ -16,7 +16,7 @@ Add a new `UIView` where you want the signature capture field. Set its class to 
 
 ![ScreenShot](ibss.png?raw=true "Interface Builder Attributes Inspector panel")
 
-With the view selected, choose the IB Attributes Inspector panel to set custom values, or set them in code where you initialize the signature view.
+With the view selected, choose the IB Attributes Inspector panel to set custom values, or set them in code where you initialise the signature view.
 
 #### Methods
 
@@ -52,11 +52,13 @@ Sets the background UIColor of the view
 
 #### Optional Protocol Methods
 
-* `startedDrawing()`
+* `startedDrawing()` // Deprecated
+* `didStart()`
 
 Notifies the delegate when someone starts a stroke in the view
 
-* `finishedDrawing()`
+* `finishedDrawing()` // Deprecated
+* `didFinish()`
 
 Notifies the delegate when someone finishes a stroke in the view
 
@@ -71,8 +73,8 @@ class MyViewController: UIViewController, YPSignatureDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    
+
+        // Set self to YPDrawSignature View delegate
         drawSignatureView.delegate = self
     }
 
@@ -91,12 +93,12 @@ class MyViewController: UIViewController, YPSignatureDelegate {
     }
 
     // MARK: - Optional delegate methods
-    func startedDrawing() {
-        // Do something when start drawing
+    func didStart() {
+        // Do something when start drawing, like disable scrolling if view is embedded in an UIScrollView or UITableViewCell
     }
 
-    func finishedDrawing() {
-        // Do something else when finished drawing
+    func didFinish() {
+        // Do something else when finished drawing, like enabling scrolling if YPDrawSignatureView is embedded in an UIScrollView or UITableViewCell
     }
 }
 ```
