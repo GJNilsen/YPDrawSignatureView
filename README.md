@@ -2,6 +2,7 @@
 
 Simple class for capturing signatures.
 
+
 ## Swift 3
 
 The class supports Swift 3.
@@ -10,27 +11,37 @@ This branch is not backwards compatible, please download the previous release if
 - Swift 3.0 will be supported
 - Swift 2.3 will not be supported
 
+
 ## Usage
 
 Add a new `UIView` where you want the signature capture field. Set its class to `YPDrawSignatureView`, and connect it to an `@IBOutlet` property in your `UIViewController`. For saving and clearing the signature, add two buttons to your view controller. Hook each button up to an `@IBAction` function.
 
 ![ScreenShot](ibss.png?raw=true "Interface Builder Attributes Inspector panel")
 
-With the view selected, choose the IB Attributes Inspector panel to set custom values, or set them in code where you initialize the signature view.
+With the view selected, choose the IB Attributes Inspector panel to set custom values, or set them in code where you initialise the signature view.
+
+
+## New Feature
+
+On ground of popular demand, added signature export as Vector Path in PDF Data Format.
+
 
 #### Methods
 
 * `clear()`
 
-This clears the view
+Clears signature
 
 * `getSignature()`
 
-This returns the signature with the bounds of the view
+Returns signature with bounds of YPDrawSignatureView instance
 
 * `getCroppedSignature()`
 
-This returns the signature with the bounds of the signature
+Returns signature with bounds of signature
+
+*  ̀getPDFSignature()`
+Returns signature as Vector Path PDF Data Format
 
 #### Properties
 
@@ -46,17 +57,14 @@ Sets the width of the signature stroke
 
 Sets the UIColor of the signature stroke
 
-* `signatureBackgroundColor: UIColor`
-
-Sets the background UIColor of the view
 
 #### Optional Protocol Methods
 
-* `startedDrawing()`
+* `didStart()`
 
 Notifies the delegate when someone starts a stroke in the view
 
-* `finishedDrawing()`
+* `didFinish()`
 
 Notifies the delegate when someone finishes a stroke in the view
 
@@ -65,38 +73,56 @@ Notifies the delegate when someone finishes a stroke in the view
 The following sample code checks if there is a signature in the view before getting it.
 
 ```
-class MyViewController: UIViewController, YPSignatureDelegate {
-
-    @IBOutlet weak var drawSignatureView: YPDrawSignatureView!
-
+class ViewController: UIViewController, YPSignatureDelegate {
+    
+    // Connect this Outlet to the Signature View
+    @IBOutlet weak var signatureView: YPDrawSignatureView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    
-        drawSignatureView.delegate = self
+        
+        // Setting this view controller as the signature view delegate, so the didStart() and
+        // didFinish() methods below in the delegate section are called.
+        signatureView.delegate = self
     }
-
-    @IBAction func save(sender: AnyObject) {
-        // Checking if the view actually contains a signature
-        if drawSignatureView.doesContainSignature {
-            let img = drawSignatureView.getCroppedSignature()
-            // Do something with img
-        } else {
-            // Alert the user or do something else
+    
+    // Function for clearing the content of signature view
+    @IBAction func clearSignature(_ sender: UIButton) {
+        // This is how the signature gets cleared
+        self.signatureView.clear()
+    }
+    
+    // Function for saving signature
+    @IBAction func saveSignature(_ sender: UIButton) {
+        // Getting the Signature Image from self.drawSignatureView using the method getSignature().
+        if let signatureImage = self.signatureView.getSignature(scale: 10) {
+            
+            // Saving signatureImage from the line above to the Photo Roll.
+            // The first time you do this, the app asks for access to your pictures.
+            UIImageWriteToSavedPhotosAlbum(signatureImage, nil, nil, nil)
+            
+            // Since the Signature is now saved to the Photo Roll, the View can be cleared anyway.
+            self.signatureView.clear()
         }
     }
-
-    @IBAction func clear(sender: AnyObject) {
-        drawSignatureView.clear()
+    
+    // MARK: - Delegate Methods
+    
+    // The delegate functions gives feedback to the instanciating class. All functions are optional,
+    // meaning you just implement the one you need.
+    
+    // didStart() is called right after the first touch is registered in the view.
+    // For example, this can be used if the view is embedded in a scroll view, temporary
+    // stopping it from scrolling while signing.
+    func didStart() {
+        print("Started Drawing")
     }
-
-    // MARK: - Optional delegate methods
-    func startedDrawing() {
-        // Do something when start drawing
-    }
-
-    func finishedDrawing() {
-        // Do something else when finished drawing
+    
+    // didFinish() is called rigth after the last touch of a gesture is registered in the view.
+    // Can be used to enabe scrolling in a scroll view if it has previous been disabled.
+    func didFinish() {
+        print("Finished Drawing")
     }
 }
 ```
@@ -130,7 +156,15 @@ YPDrawSignatureView is available under the MIT license. See the [LICENSE](LICENS
 
 ## Update history
 
-### v1.0.1 - 5/2/17
+### v1.1 - 5/3/17
+
+* Added PDF support for exporting signature as high resolution vector graphics
+* Deprecated methods and properties are properly marked
+* Cleaning up method naming
+* Delegate methods are now optional
+* Sample project updated to latest settings
+
+#### v1.0.1 - 5/2/17
 
 * Minor bugfix
 

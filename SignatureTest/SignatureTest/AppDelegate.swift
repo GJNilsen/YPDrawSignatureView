@@ -1,11 +1,11 @@
 // YPDrawSignatureView is open source
-// Version 1.0
+// Version 1.1
 //
-// Copyright (c) 2014 - 2016 Yuppielabel and the project contributors
+// Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
 //
-// See https://github.com/yuppielabel/YPDrawSignatureView/blob/master/LICENSE for license information
-// See https://github.com/yuppielabel/YPDrawSignatureView/blob/master/README.md for the list project contributors
+// https://github.com/GJNilsen/YPDrawSignatureView/blob/master/LICENSE   License Information
+// https://github.com/GJNilsen/YPDrawSignatureView/blob/master/README.md Project Contributors
 
 import UIKit
 

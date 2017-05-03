@@ -1,13 +1,14 @@
 // YPDrawSignatureView is open source
-// Version 1.0
+// Version 1.1
 //
-// Copyright (c) 2014 - 2016 Yuppielabel and the project contributors
+// Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
 //
-// See https://github.com/yuppielabel/YPDrawSignatureView/blob/master/LICENSE for license information
-// See https://github.com/yuppielabel/YPDrawSignatureView/blob/master/README.md for the list project contributors
+// https://github.com/GJNilsen/YPDrawSignatureView/blob/master/LICENSE   License Information
+// https://github.com/GJNilsen/YPDrawSignatureView/blob/master/README.md Project Contributors
 
 import UIKit
+import CoreGraphics
 
 // MARK: Class properties and initialization
 /// # Class: YPDrawSignatureView
@@ -24,7 +25,7 @@ import UIKit
 /// - getSignature() or
 /// - getCroppedSignature()
 @IBDesignable
-public class YPDrawSignatureView: UIView {
+final public class YPDrawSignatureView: UIView {
     
     weak var delegate: YPSignatureDelegate?
     
@@ -41,6 +42,8 @@ public class YPDrawSignatureView: UIView {
         }
     }
     
+    @objc
+    @available(*, deprecated, renamed: "backgroundColor")
     @IBInspectable public var signatureBackgroundColor: UIColor = .white {
         didSet {
             self.backgroundColor = signatureBackgroundColor
@@ -59,15 +62,14 @@ public class YPDrawSignatureView: UIView {
     }
     
     // MARK: - Private properties
-    private var path = UIBezierPath()
-    private var points = [CGPoint](repeating: CGPoint(), count: 5)
-    private var controlPoint = 0
+    fileprivate var path = UIBezierPath()
+    fileprivate var points = [CGPoint](repeating: CGPoint(), count: 5)
+    fileprivate var controlPoint = 0
     
     // MARK: - Init
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.backgroundColor = self.signatureBackgroundColor
         self.path.lineWidth = self.strokeWidth
         self.path.lineJoinStyle = CGLineJoin.round
     }
@@ -75,7 +77,6 @@ public class YPDrawSignatureView: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = self.signatureBackgroundColor
         self.path.lineWidth = self.strokeWidth
         self.path.lineJoinStyle = CGLineJoin.round
     }
@@ -95,7 +96,7 @@ public class YPDrawSignatureView: UIView {
         }
         
         if let delegate = self.delegate {
-            delegate.startedDrawing()
+            delegate.didStart()
         }
     }
     
@@ -130,7 +131,7 @@ public class YPDrawSignatureView: UIView {
         }
         
         if let delegate = self.delegate {
-            delegate.finishedDrawing()
+            delegate.didFinish()
         }
     }
     
@@ -161,7 +162,7 @@ public class YPDrawSignatureView: UIView {
     }
     
     
-    private func scale(_ rect: CGRect, byFactor factor: CGFloat) -> CGRect
+    fileprivate func scale(_ rect: CGRect, byFactor factor: CGFloat) -> CGRect
     {
         var scaledRect = rect
         scaledRect.origin.x *= factor
@@ -170,14 +171,58 @@ public class YPDrawSignatureView: UIView {
         scaledRect.size.height *= factor
         return scaledRect
     }
+    
+    // Saves the Signature as a Vector PDF Data blob
+    public func getPDFSignature() -> Data {
+        
+        let mutableData = CFDataCreateMutable(nil, 0)
+        
+        guard let dataConsumer = CGDataConsumer.init(data: mutableData!) else { fatalError() }
+        
+        var rect = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        
+        guard let pdfContext = CGContext(consumer: dataConsumer, mediaBox: &rect, nil) else { fatalError() }
+
+        pdfContext.beginPDFPage(nil)
+        pdfContext.translateBy(x: 0, y: self.frame.height)
+        pdfContext.scaleBy(x: 1, y: -1)
+        pdfContext.addPath(self.path.cgPath)
+        pdfContext.strokePath()
+        pdfContext.saveGState()
+        pdfContext.endPDFPage()
+        pdfContext.closePDF()
+        
+        let data = mutableData! as Data
+        
+        return data
+    }
+    
+    
+    // MARK: - Injection method for Unit Tests only
+    /// This method is used to inject a bezier path for testing
+    /// purposes only. This method is not included in the main
+    /// YPDrawSignatureView.swift source file by intention.
+    func injectBezierPath(_ path: UIBezierPath) {
+        self.path = path
+    }
 }
 
-// MARK: - Protocol Methods for YPDrawSignatureViewDelegate
+// MARK: - Protocol definition for YPDrawSignatureViewDelegate
 /// ## YPDrawSignatureViewDelegate Protocol
 /// YPDrawSignatureViewDelegate:
-/// - startedDrawing()
-/// - finishedDrawing()
+/// - optional didStart()
+/// - optional didFinish()
+@objc
 protocol YPSignatureDelegate: class {
+    func didStart()
+    func didFinish()
+    @available(*, unavailable, renamed: "didFinish()")
     func startedDrawing()
+    @available(*, unavailable, renamed: "didFinish()")
     func finishedDrawing()
+}
+
+extension YPSignatureDelegate {
+    func didStart() {}
+    func didFinish() {}
 }
