@@ -40,7 +40,7 @@ Returns signature with bounds of YPDrawSignatureView instance
 
 Returns signature with bounds of signature
 
-*  ̀getPDFSignature()`
+* `getPDFSignature()`
 Returns signature as Vector Path PDF Data Format
 
 #### Properties
