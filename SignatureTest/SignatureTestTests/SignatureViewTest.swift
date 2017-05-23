@@ -1,5 +1,5 @@
 // YPDrawSignatureView is open source
-// Version 1.0.2
+// Version 1.1.1
 //
 // Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
@@ -39,7 +39,7 @@ class SignatureViewTest: XCTestCase {
         signatureView.strokeColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         signatureView.injectBezierPath(doodle())
         signatureView.draw(signatureView.frame)
-        XCTAssertNotEqual(signatureView.signatureBackgroundColor, getPixelColor(view2Image(signatureView), at: CGPoint(x: 4, y: 4)))
+        XCTAssertNotEqual(signatureView.backgroundColor, getPixelColor(view2Image(signatureView), at: CGPoint(x: 4, y: 4)))
     }
     
     func testGetSignature() {
@@ -49,7 +49,7 @@ class SignatureViewTest: XCTestCase {
         signatureView.draw(signatureView.frame)
         
         let signature = signatureView.getSignature()
-        XCTAssertNotEqual(signatureView.signatureBackgroundColor, getPixelColor(signature!, at: CGPoint(x: 4, y: 4)))
+        XCTAssertNotEqual(signatureView.backgroundColor, getPixelColor(signature!, at: CGPoint(x: 4, y: 4)))
     }
     
     

@@ -1,5 +1,5 @@
 // YPDrawSignatureView is open source
-// Version 1.1
+// Version 1.1.1
 //
 // Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
