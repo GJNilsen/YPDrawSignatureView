@@ -1,10 +1,11 @@
+// YPDrawSignatureView is open source
+// Version 1.1.1
 //
-//  SignatureTestUITests.swift
-//  SignatureTestUITests
+// Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
+// Available under the MIT license
 //
-//  Created by Geert-Jan Korsbø Nilsen on 19/12/15.
-//  Copyright © 2015 Yuppielabel. All rights reserved.
-//
+// https://github.com/GJNilsen/YPDrawSignatureView/blob/master/LICENSE   License Information
+// https://github.com/GJNilsen/YPDrawSignatureView/blob/master/README.md Project Contributors
 
 import XCTest
 

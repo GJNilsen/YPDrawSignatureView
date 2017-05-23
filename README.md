@@ -156,7 +156,11 @@ YPDrawSignatureView is available under the MIT license. See the [LICENSE](LICENS
 
 ## Update history
 
-### v1.1 - 5/3/17
+### v1.1.1 - 5/23/17
+
+* Bugfix
+
+#### v1.1 - 5/3/17
 
 * Added PDF support for exporting signature as high resolution vector graphics
 * Deprecated methods and properties are properly marked

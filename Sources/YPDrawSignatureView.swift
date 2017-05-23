@@ -1,5 +1,5 @@
 // YPDrawSignatureView is open source
-// Version 1.1
+// Version 1.1.1
 //
 // Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
@@ -147,6 +147,7 @@ final public class YPDrawSignatureView: UIView {
     public func getSignature(scale:CGFloat = 1) -> UIImage? {
         if !doesContainSignature { return nil }
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, scale)
+        self.strokeColor.setStroke()
         self.path.stroke()
         let signature = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -187,6 +188,7 @@ final public class YPDrawSignatureView: UIView {
         pdfContext.translateBy(x: 0, y: self.frame.height)
         pdfContext.scaleBy(x: 1, y: -1)
         pdfContext.addPath(self.path.cgPath)
+        pdfContext.setStrokeColor(strokeColor.cgColor)
         pdfContext.strokePath()
         pdfContext.saveGState()
         pdfContext.endPDFPage()
