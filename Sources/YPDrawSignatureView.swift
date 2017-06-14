@@ -1,5 +1,5 @@
 // YPDrawSignatureView is open source
-// Version 1.1.1
+// Version 1.1.2
 //
 // Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
@@ -32,13 +32,13 @@ final public class YPDrawSignatureView: UIView {
     // MARK: - Public properties
     @IBInspectable public var strokeWidth: CGFloat = 2.0 {
         didSet {
-            self.path.lineWidth = strokeWidth
+            path.lineWidth = strokeWidth
         }
     }
     
     @IBInspectable public var strokeColor: UIColor = .black {
         didSet {
-            self.strokeColor.setStroke()
+            strokeColor.setStroke()
         }
     }
     
@@ -46,14 +46,14 @@ final public class YPDrawSignatureView: UIView {
     @available(*, deprecated, renamed: "backgroundColor")
     @IBInspectable public var signatureBackgroundColor: UIColor = .white {
         didSet {
-            self.backgroundColor = signatureBackgroundColor
+            backgroundColor = signatureBackgroundColor
         }
     }
     
     // Computed Property returns true if the view actually contains a signature
     public var doesContainSignature: Bool {
         get {
-            if self.path.isEmpty {
+            if path.isEmpty {
                 return false
             } else {
                 return true
@@ -70,15 +70,17 @@ final public class YPDrawSignatureView: UIView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.path.lineWidth = self.strokeWidth
-        self.path.lineJoinStyle = CGLineJoin.round
+        path.lineWidth = strokeWidth
+        path.lineJoinStyle = .round
+        path.lineCapStyle = .round
     }
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.path.lineWidth = self.strokeWidth
-        self.path.lineJoinStyle = CGLineJoin.round
+        path.lineWidth = strokeWidth
+        path.lineJoinStyle = .round
+        path.lineCapStyle = .round
     }
     
     // MARK: - Draw
@@ -91,11 +93,11 @@ final public class YPDrawSignatureView: UIView {
     override public func touchesBegan(_ touches: Set <UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
             let touchPoint = firstTouch.location(in: self)
-            self.controlPoint = 0
-            self.points[0] = touchPoint
+            controlPoint = 0
+            points[0] = touchPoint
         }
         
-        if let delegate = self.delegate {
+        if let delegate = delegate {
             delegate.didStart()
         }
     }
@@ -103,34 +105,34 @@ final public class YPDrawSignatureView: UIView {
     override public func touchesMoved(_ touches: Set <UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
             let touchPoint = firstTouch.location(in: self)
-            self.controlPoint += 1
-            self.points[self.controlPoint] = touchPoint
-            if (self.controlPoint == 4) {
-                self.points[3] = CGPoint(x: (self.points[2].x + self.points[4].x)/2.0, y: (self.points[2].y + self.points[4].y)/2.0)
-                self.path.move(to: self.points[0])
-                self.path.addCurve(to: self.points[3], controlPoint1:self.points[1], controlPoint2:self.points[2])
+            controlPoint += 1
+            points[controlPoint] = touchPoint
+            if (controlPoint == 4) {
+                points[3] = CGPoint(x: (points[2].x + points[4].x)/2.0, y: (points[2].y + points[4].y)/2.0)
+                path.move(to: points[0])
+                path.addCurve(to: points[3], controlPoint1: points[1], controlPoint2: points[2])
                 
-                self.setNeedsDisplay()
-                self.points[0] = self.points[3]
-                self.points[1] = self.points[4]
-                self.controlPoint = 1
+                setNeedsDisplay()
+                points[0] = points[3]
+                points[1] = points[4]
+                controlPoint = 1
             }
             
-            self.setNeedsDisplay()
+            setNeedsDisplay()
         }
     }
     
     override public func touchesEnded(_ touches: Set <UITouch>, with event: UIEvent?) {
-        if self.controlPoint < 4 {
-            let touchPoint = self.points[0]
-            self.path.move(to: CGPoint(x: touchPoint.x-1.0,y: touchPoint.y))
-            self.path.addLine(to: CGPoint(x: touchPoint.x+1.0,y: touchPoint.y))
-            self.setNeedsDisplay()
+        if controlPoint < 4 {
+            let touchPoint = points[0]
+            path.move(to: CGPoint(x: touchPoint.x,y: touchPoint.y))
+            path.addLine(to: CGPoint(x: touchPoint.x,y: touchPoint.y))
+            setNeedsDisplay()
         } else {
-            self.controlPoint = 0
+            controlPoint = 0
         }
         
-        if let delegate = self.delegate {
+        if let delegate = delegate {
             delegate.didFinish()
         }
     }
@@ -180,14 +182,14 @@ final public class YPDrawSignatureView: UIView {
         
         guard let dataConsumer = CGDataConsumer.init(data: mutableData!) else { fatalError() }
         
-        var rect = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        var rect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         
         guard let pdfContext = CGContext(consumer: dataConsumer, mediaBox: &rect, nil) else { fatalError() }
         
         pdfContext.beginPDFPage(nil)
-        pdfContext.translateBy(x: 0, y: self.frame.height)
+        pdfContext.translateBy(x: 0, y: frame.height)
         pdfContext.scaleBy(x: 1, y: -1)
-        pdfContext.addPath(self.path.cgPath)
+        pdfContext.addPath(path.cgPath)
         pdfContext.setStrokeColor(strokeColor.cgColor)
         pdfContext.strokePath()
         pdfContext.saveGState()
@@ -198,7 +200,7 @@ final public class YPDrawSignatureView: UIView {
         
         return data
     }
-
+    
 }
 
 // MARK: - Protocol definition for YPDrawSignatureViewDelegate

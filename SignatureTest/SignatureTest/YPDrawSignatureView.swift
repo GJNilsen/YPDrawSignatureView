@@ -1,5 +1,5 @@
 // YPDrawSignatureView is open source
-// Version 1.1.1
+// Version 1.1.2
 //
 // Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
@@ -71,14 +71,16 @@ final public class YPDrawSignatureView: UIView {
         super.init(coder: aDecoder)
         
         path.lineWidth = strokeWidth
-        path.lineJoinStyle = CGLineJoin.round
+        path.lineJoinStyle = .round
+        path.lineCapStyle = .round
     }
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
         
         path.lineWidth = strokeWidth
-        path.lineJoinStyle = CGLineJoin.round
+        path.lineJoinStyle = .round
+        path.lineCapStyle = .round
     }
     
     // MARK: - Draw
@@ -123,8 +125,8 @@ final public class YPDrawSignatureView: UIView {
     override public func touchesEnded(_ touches: Set <UITouch>, with event: UIEvent?) {
         if controlPoint < 4 {
             let touchPoint = points[0]
-            path.move(to: CGPoint(x: touchPoint.x-1.0,y: touchPoint.y))
-            path.addLine(to: CGPoint(x: touchPoint.x+1.0,y: touchPoint.y))
+            path.move(to: CGPoint(x: touchPoint.x,y: touchPoint.y))
+            path.addLine(to: CGPoint(x: touchPoint.x,y: touchPoint.y))
             setNeedsDisplay()
         } else {
             controlPoint = 0
