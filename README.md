@@ -2,6 +2,9 @@
 
 Simple class for capturing signatures.
 
+## Swift 4
+
+The code is compatible with Swift 4 as distributed with Xcode 9 Beta 2 without any modifications. The sample app needs to update the project settings, since that is an easy operation without touching code, its left up to the users of the sample app to update the settings for themselves.
 
 ## Swift 3
 
