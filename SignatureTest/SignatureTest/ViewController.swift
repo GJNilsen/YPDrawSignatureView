@@ -8,6 +8,7 @@
 // https://github.com/GJNilsen/YPDrawSignatureView/blob/master/README.md Project Contributors
 
 import UIKit
+import YPDrawSignatureView
 
 class ViewController: UIViewController, YPSignatureDelegate {
     

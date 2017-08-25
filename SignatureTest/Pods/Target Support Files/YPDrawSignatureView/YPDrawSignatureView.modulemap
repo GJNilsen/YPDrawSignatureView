@@ -1,0 +1,6 @@
+framework module YPDrawSignatureView {
+  umbrella header "YPDrawSignatureView-umbrella.h"
+
+  export *
+  module * { export * }
+}

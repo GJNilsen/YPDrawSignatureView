@@ -24,7 +24,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="z9t-5y-AWr">
                                 <rect key="frame" x="-12.5" y="168.5" width="400" height="330"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u9Q-lu-sya" customClass="YPDrawSignatureView" customModule="SignatureTest" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u9Q-lu-sya" customClass="YPDrawSignatureView" customModule="YPDrawSignatureView">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
