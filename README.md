@@ -136,6 +136,10 @@ Check out the example project for more information on how to save signatures and
 
 ## Installation
 
+### Cocoapods
+`pod 'YPDrawSignatureView'`
+
+### Manual
 Add YPDrawSignature.swift to your project
 
 ## Support and Issues
