@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'YPDrawSignatureView'
-  s.version  = '1.0'
+  s.version  = '1.1.2'
   s.ios.deployment_target     = '9.0'
   s.license  = { :type => 'MIT', :file => 'LICENSE' }
   s.summary  = 'Capture signature view in Swift and export it as a vector graphics or bitmap'
