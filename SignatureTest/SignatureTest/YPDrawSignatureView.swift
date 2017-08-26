@@ -185,7 +185,7 @@ final public class YPDrawSignatureView: UIView {
         var rect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         
         guard let pdfContext = CGContext(consumer: dataConsumer, mediaBox: &rect, nil) else { fatalError() }
-        
+
         pdfContext.beginPDFPage(nil)
         pdfContext.translateBy(x: 0, y: frame.height)
         pdfContext.scaleBy(x: 1, y: -1)
@@ -201,6 +201,14 @@ final public class YPDrawSignatureView: UIView {
         return data
     }
     
+    
+    // MARK: - Injection method for Unit Tests only
+    /// This method is used to inject a bezier path for testing
+    /// purposes only. This method is not included in the main
+    /// YPDrawSignatureView.swift source file by intention.
+    func injectBezierPath(_ path: UIBezierPath) {
+        self.path = path
+    }
 }
 
 // MARK: - Protocol definition for YPDrawSignatureViewDelegate
