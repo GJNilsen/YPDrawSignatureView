@@ -132,16 +132,10 @@ class ViewController: UIViewController, YPSignatureDelegate {
 
 ## Example Project
 
-Check out the example project for more information on how to save signatures and how to clear the signature view.   
-First you need run `pod install` to install the dependency.
-
+Check out the example project for more information on how to save signatures and how to clear the signature view.
 
 ## Installation
 
-### Cocoapods
-`pod 'YPDrawSignatureView'`
-
-### Manual
 Add YPDrawSignature.swift to your project
 
 ## Support and Issues
