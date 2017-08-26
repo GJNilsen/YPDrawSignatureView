@@ -25,9 +25,9 @@ import CoreGraphics
 /// - getSignature() or
 /// - getCroppedSignature()
 @IBDesignable
-final public class YPDrawSignatureView: UIView {
+open class YPDrawSignatureView: UIView {
     
-    weak var delegate: YPSignatureDelegate?
+    open weak var delegate: YPSignatureDelegate?
     
     // MARK: - Public properties
     @IBInspectable public var strokeWidth: CGFloat = 2.0 {
@@ -84,13 +84,13 @@ final public class YPDrawSignatureView: UIView {
     }
     
     // MARK: - Draw
-    override public func draw(_ rect: CGRect) {
+    override open func draw(_ rect: CGRect) {
         self.strokeColor.setStroke()
         self.path.stroke()
     }
     
     // MARK: - Touch handling functions
-    override public func touchesBegan(_ touches: Set <UITouch>, with event: UIEvent?) {
+    override open func touchesBegan(_ touches: Set <UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
             let touchPoint = firstTouch.location(in: self)
             controlPoint = 0
@@ -102,7 +102,7 @@ final public class YPDrawSignatureView: UIView {
         }
     }
     
-    override public func touchesMoved(_ touches: Set <UITouch>, with event: UIEvent?) {
+    override open func touchesMoved(_ touches: Set <UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
             let touchPoint = firstTouch.location(in: self)
             controlPoint += 1
@@ -122,7 +122,7 @@ final public class YPDrawSignatureView: UIView {
         }
     }
     
-    override public func touchesEnded(_ touches: Set <UITouch>, with event: UIEvent?) {
+    override open func touchesEnded(_ touches: Set <UITouch>, with event: UIEvent?) {
         if controlPoint < 4 {
             let touchPoint = points[0]
             path.move(to: CGPoint(x: touchPoint.x,y: touchPoint.y))
@@ -209,7 +209,7 @@ final public class YPDrawSignatureView: UIView {
 /// - optional didStart()
 /// - optional didFinish()
 @objc
-protocol YPSignatureDelegate: class {
+public protocol YPSignatureDelegate: class {
     func didStart()
     func didFinish()
     @available(*, unavailable, renamed: "didFinish()")
