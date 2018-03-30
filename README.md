@@ -1,5 +1,5 @@
 # YPDrawSignatureView
-![Image of Swift Version Badge](https://img.shields.io/badge/Swift-1.4-lightgrey.svg)
+![Image of Swift Version Badge](https://img.shields.io/badge/Swift-4.1-lightgrey.svg)
 Simple class for capturing signatures.
 
 ## Swift 4
