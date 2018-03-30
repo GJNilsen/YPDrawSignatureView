@@ -1,7 +1,7 @@
 // YPDrawSignatureView is open source
-// Version 1.1.2
+// Version 1.1.3
 //
-// Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
+// Copyright (c) 2014 - 2018 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
 //
 // https://github.com/GJNilsen/YPDrawSignatureView/blob/master/LICENSE   License Information
@@ -27,7 +27,7 @@ import CoreGraphics
 @IBDesignable
 final public class YPDrawSignatureView: UIView {
     
-    weak var delegate: YPSignatureDelegate?
+    public weak var delegate: YPSignatureDelegate?
     
     // MARK: - Public properties
     @IBInspectable public var strokeWidth: CGFloat = 2.0 {
@@ -209,7 +209,7 @@ final public class YPDrawSignatureView: UIView {
 /// - optional didStart()
 /// - optional didFinish()
 @objc
-protocol YPSignatureDelegate: class {
+public protocol YPSignatureDelegate: class {
     func didStart()
     func didFinish()
     @available(*, unavailable, renamed: "didFinish()")
