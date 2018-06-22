@@ -13,7 +13,7 @@ Capture signature view in Swift and export it as a vector graphics or bitmap
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'GJNilsen' => 'gj.nilsen@appfact.no' }
   s.source           = { :git => 'https://github.com/GJNilsen/YPDrawSignatureView.git', :tag => s.version.to_s }
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '8.0'
   s.requires_arc     = true 
   s.source_files     = 'Sources/*.swift'
   s.frameworks       = 'UIKit'
