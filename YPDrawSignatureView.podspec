@@ -17,5 +17,4 @@ Capture signature view in Swift and export it as a vector graphics or bitmap
   s.requires_arc     = true 
   s.source_files     = 'Sources/*.swift'
   s.frameworks       = 'UIKit'
-  s.swift_version    = '4.1'
 end
