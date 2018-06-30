@@ -145,7 +145,7 @@ GitHub Issues are for filing bug reports and feature requests only. Use [StackOv
 
 ## Original Author
 
-[Geert-Jan Nilsen](mailto:gj.nilsen@appfact.com) [Yuppielabel](http://yuppielabel.com)
+[Geert-Jan Zwart](mailto:gj.zwart@appfact.com) [Appfact](http://appfact.no)
 
 ## Contributors
 
