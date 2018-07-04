@@ -56,13 +56,13 @@ class ViewController: UIViewController, YPSignatureDelegate {
     // didStart() is called right after the first touch is registered in the view.
     // For example, this can be used if the view is embedded in a scroll view, temporary
     // stopping it from scrolling while signing.
-    func didStart() {
+    func didStart(_ view : YPDrawSignatureView) {
         print("Started Drawing")
     }
     
     // didFinish() is called rigth after the last touch of a gesture is registered in the view.
     // Can be used to enabe scrolling in a scroll view if it has previous been disabled.
-    func didFinish() {
+    func didFinish(_ view : YPDrawSignatureView) {
         print("Finished Drawing")
     }
 }

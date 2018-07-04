@@ -218,8 +218,8 @@ final public class YPDrawSignatureView: UIView {
 /// - optional didFinish()
 @objc
 public protocol YPSignatureDelegate: class {
-    func didStart()
-    func didFinish()
+    func didStart(_ view : YPDrawSignatureView)
+    func didFinish(_ view : YPDrawSignatureView)
     @available(*, unavailable, renamed: "didFinish()")
     func startedDrawing()
     @available(*, unavailable, renamed: "didFinish()")
@@ -227,6 +227,6 @@ public protocol YPSignatureDelegate: class {
 }
 
 extension YPSignatureDelegate {
-    func didStart() {}
-    func didFinish() {}
+    func didStart(_ view : YPDrawSignatureView) {}
+    func didFinish(_ view : YPDrawSignatureView) {}
 }
