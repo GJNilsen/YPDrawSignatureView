@@ -98,7 +98,7 @@ final public class YPDrawSignatureView: UIView {
         }
         
         if let delegate = delegate {
-            delegate.didStart()
+            delegate.didStart(self)
         }
     }
     
@@ -133,7 +133,7 @@ final public class YPDrawSignatureView: UIView {
         }
         
         if let delegate = delegate {
-            delegate.didFinish()
+            delegate.didFinish(self)
         }
     }
     
@@ -206,19 +206,19 @@ final public class YPDrawSignatureView: UIView {
 // MARK: - Protocol definition for YPDrawSignatureViewDelegate
 /// ## YPDrawSignatureViewDelegate Protocol
 /// YPDrawSignatureViewDelegate:
-/// - optional didStart()
-/// - optional didFinish()
+/// - optional didStart(_ view : YPDrawSignatureView)
+/// - optional didFinish(_ view : YPDrawSignatureView)
 @objc
 public protocol YPSignatureDelegate: class {
     func didStart()
     func didFinish()
     @available(*, unavailable, renamed: "didFinish()")
     func startedDrawing()
-    @available(*, unavailable, renamed: "didFinish()")
+    @available(*, unavailable, renamed: "didFinish(_ view : YPDrawSignatureView)")
     func finishedDrawing()
 }
 
 extension YPSignatureDelegate {
-    func didStart() {}
-    func didFinish() {}
+    func didStart(_ view : YPDrawSignatureView) {}
+    func didFinish(_ view : YPDrawSignatureView) {}
 }
