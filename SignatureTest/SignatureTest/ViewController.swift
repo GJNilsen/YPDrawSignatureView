@@ -1,7 +1,7 @@
 // YPDrawSignatureView is open source
-// Version 1.1.1
+// Version 1.2.0
 //
-// Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
+// Copyright (c) 2014 - 2018 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
 //
 // https://github.com/GJNilsen/YPDrawSignatureView/blob/master/LICENSE   License Information
@@ -18,8 +18,8 @@ class ViewController: UIViewController, YPSignatureDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Setting this view controller as the signature view delegate, so the didStart() and
-        // didFinish() methods below in the delegate section are called.
+        // Setting this view controller as the signature view delegate, so the didStart(_ view: YPDrawSignatureView) and
+        // didFinish(_ view: YPDrawSignatureView) methods below in the delegate section are called.
         signatureView.delegate = self
     }
     

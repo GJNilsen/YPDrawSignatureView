@@ -1,5 +1,5 @@
 // YPDrawSignatureView is open source
-// Version 1.1.3
+// Version 1.2.0
 //
 // Copyright (c) 2014 - 2018 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
@@ -17,8 +17,8 @@ import CoreGraphics
 /// This is an UIView based class for capturing a signature drawn by a finger in iOS.
 /// ## Usage
 /// Add the YPSignatureDelegate to the view to exploit the optional delegate methods
-/// - startedDrawing()
-/// - finishedDrawing()
+/// - startedDrawing(_ view: YPDrawSignatureView)
+/// - finishedDrawing(_ view: YPDrawSignatureView)
 /// - Add an @IBOutlet, and set its delegate to self
 /// - Clear the signature field by calling clear() to it
 /// - Retrieve the signature from the field by either calling
@@ -210,12 +210,8 @@ final public class YPDrawSignatureView: UIView {
 /// - optional didFinish(_ view : YPDrawSignatureView)
 @objc
 public protocol YPSignatureDelegate: class {
-    func didStart()
-    func didFinish()
-    @available(*, unavailable, renamed: "didFinish()")
-    func startedDrawing()
-    @available(*, unavailable, renamed: "didFinish(_ view : YPDrawSignatureView)")
-    func finishedDrawing()
+    func didStart(_ view : YPDrawSignatureView)
+    func didFinish(_ view : YPDrawSignatureView)
 }
 
 extension YPSignatureDelegate {

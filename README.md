@@ -2,9 +2,9 @@
 ![Image of Swift Version Badge](https://img.shields.io/badge/Swift-1.4-lightgrey.svg)
 Simple class for capturing signatures.
 
-## Swift 4
+## Swift 4.1
 
-The code is compatible with Swift 4 as distributed with Xcode 9 Beta 2 without any modifications. The sample app needs to update the project settings, since that is an easy operation without touching code, its left up to the users of the sample app to update the settings for themselves.
+The code is compatible with Swift 4.1.
 
 ## Swift 3
 
@@ -63,11 +63,11 @@ Sets the UIColor of the signature stroke
 
 #### Optional Protocol Methods
 
-* `didStart()`
+* `didStart(_ view: YPDrawSignatureView)`
 
-Notifies the delegate when someone starts a stroke in the view
+Notifies the delegate when someone starts a stroke in the view. 
 
-* `didFinish()`
+* `didFinish(_ view: YPDrawSignatureView)`
 
 Notifies the delegate when someone finishes a stroke in the view
 
@@ -115,16 +115,16 @@ class ViewController: UIViewController, YPSignatureDelegate {
     // The delegate functions gives feedback to the instanciating class. All functions are optional,
     // meaning you just implement the one you need.
     
-    // didStart() is called right after the first touch is registered in the view.
+    // didStart(_ view: YPDrawSignatureView) is called right after the first touch is registered in the view.
     // For example, this can be used if the view is embedded in a scroll view, temporary
     // stopping it from scrolling while signing.
-    func didStart() {
+    func didStart(_ view: YPDrawSignatureView) {
         print("Started Drawing")
     }
     
-    // didFinish() is called rigth after the last touch of a gesture is registered in the view.
+    // didFinish(_ view: YPDrawSignatureView) is called rigth after the last touch of a gesture is registered in the view.
     // Can be used to enabe scrolling in a scroll view if it has previous been disabled.
-    func didFinish() {
+    func didFinish(_ view: YPDrawSignatureView) {
         print("Finished Drawing")
     }
 }
@@ -152,6 +152,7 @@ GitHub Issues are for filing bug reports and feature requests only. Use [StackOv
 * [gingofthesouth](https://github.com/gingofthesouth).
 * [AndreasLey](https://github.com/andreasley).
 * [Andrew Carvajal](https://github.com/andrewcar).
+* [Steve Botello](https://github.com/xsteviex).
 
 ## License
 
@@ -159,7 +160,11 @@ YPDrawSignatureView is available under the MIT license. See the [LICENSE](LICENS
 
 ## Update history
 
-### v1.1.3 - 3/30/18
+### v1.2 - 7/4/18
+
+* Added support for multiple signature views.
+
+#### v1.1.3 - 3/30/18
 
 * Minor bugfix.
 
