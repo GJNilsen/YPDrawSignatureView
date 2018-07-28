@@ -1,10 +1,10 @@
 # YPDrawSignatureView
-![Image of Swift Version Badge](https://img.shields.io/badge/Swift-1.4-lightgrey.svg)
+![Image of Swift Version Badge](https://img.shields.io/badge/Swift-4.2-lightgrey.svg)
 Simple class for capturing signatures.
 
-## Swift 4.1
+## Swift 4.2
 
-The code is compatible with Swift 4.1.
+The code is compatible with Swift 4.2.
 
 ## Swift 3
 
