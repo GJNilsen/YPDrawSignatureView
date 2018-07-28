@@ -2,17 +2,13 @@
 ![Image of Swift Version Badge](https://img.shields.io/badge/Swift-4.2-lightgrey.svg)
 Simple class for capturing signatures.
 
-## Swift 4.2
+## Swift 4
 
-The code is compatible with Swift 4.2.
+The class is compatible with Swift 4.2.
 
-## Swift 3
+## Legacy Support
 
-The class supports Swift 3.
-This branch is not backwards compatible, please download the previous release if you can not support Swift 3. Legacy versions will not be updated anymore.
-
-- Swift 3.0 will be supported
-- Swift 2.3 will not be supported
+The class is not backwards compatible. Please download previous releases if you need support for earlier versions of Swift. Legacy versions will not be updated.
 
 
 ## Usage
@@ -140,7 +136,7 @@ Add YPDrawSignature.swift to your project
 
 ## Support and Issues
 
-GitHub Issues are for filing bug reports and feature requests only. Use [StackOverflow](http://stackoverflow.com/search?q=YPDrawSignatureView) for support related questions and help.
+GitHub Issues are for filing **bug reports** and **feature requests** only. Get support from the community over at [StackOverflow](http://stackoverflow.com/search?q=YPDrawSignatureView), or contact the author directly for paid support.
 
 ## Original Author
 
