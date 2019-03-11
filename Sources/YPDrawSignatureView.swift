@@ -11,19 +11,20 @@ import UIKit
 import CoreGraphics
 
 // MARK: Class properties and initialization
-/// # Class: YPDrawSignatureView
-/// Accepts touches and draws an image to an UIView
-/// ## Description
-/// This is an UIView based class for capturing a signature drawn by a finger in iOS.
-/// ## Usage
-/// Add the YPSignatureDelegate to the view to exploit the optional delegate methods
-/// - startedDrawing(_ view: YPDrawSignatureView)
-/// - finishedDrawing(_ view: YPDrawSignatureView)
-/// - Add an @IBOutlet, and set its delegate to self
-/// - Clear the signature field by calling clear() to it
-/// - Retrieve the signature from the field by either calling
-/// - getSignature() or
-/// - getCroppedSignature()
+/**
+ Accepts touches and draws an image to a UIView.
+ ## Description
+ This is an UIView based class for capturing a signature drawn by a finger in iOS.
+ ## Usage
+ Add the YPSignatureDelegate to the view to exploit the optional delegate methods:
+ - startedDrawing(_ view: YPDrawSignatureView)
+ - finishedDrawing(_ view: YPDrawSignatureView)
+ - Add an @IBOutlet, and set its delegate to self
+ - Clear the signature field by calling clear() to it
+ - Retrieve the signature from the field by either calling
+ - getSignature() or
+ - getCroppedSignature()
+*/
 @IBDesignable
 final public class YPDrawSignatureView: UIView {
     
@@ -204,10 +205,11 @@ final public class YPDrawSignatureView: UIView {
 }
 
 // MARK: - Protocol definition for YPDrawSignatureViewDelegate
-/// ## YPDrawSignatureViewDelegate Protocol
-/// YPDrawSignatureViewDelegate:
-/// - optional didStart(_ view : YPDrawSignatureView)
-/// - optional didFinish(_ view : YPDrawSignatureView)
+/**
+ Handles events sent by YPDrawSignatureView.
+ - optional didStart(_ view : YPDrawSignatureView)
+ - optional didFinish(_ view : YPDrawSignatureView)
+*/
 @objc
 public protocol YPSignatureDelegate: AnyObject {
     func didStart(_ view : YPDrawSignatureView)
