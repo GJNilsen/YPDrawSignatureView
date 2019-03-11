@@ -209,7 +209,7 @@ final public class YPDrawSignatureView: UIView {
 /// - optional didStart(_ view : YPDrawSignatureView)
 /// - optional didFinish(_ view : YPDrawSignatureView)
 @objc
-public protocol YPSignatureDelegate: class {
+public protocol YPSignatureDelegate: AnyObject {
     func didStart(_ view : YPDrawSignatureView)
     func didFinish(_ view : YPDrawSignatureView)
 }
