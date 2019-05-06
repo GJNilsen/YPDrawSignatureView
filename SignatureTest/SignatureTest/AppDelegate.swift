@@ -1,7 +1,7 @@
 // YPDrawSignatureView is open source
-// Version 1.2.0
+// Version 1.2.1
 //
-// Copyright (c) 2014 - 2017 The YPDrawSignatureView Project Contributors
+// Copyright (c) 2014 - 2019 The YPDrawSignatureView Project Contributors
 // Available under the MIT license
 //
 // https://github.com/GJNilsen/YPDrawSignatureView/blob/master/LICENSE   License Information
@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         return true
     }
     

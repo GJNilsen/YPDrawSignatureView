@@ -1,10 +1,11 @@
 # YPDrawSignatureView
-![Image of Swift Version Badge](https://img.shields.io/badge/Swift-4.2-lightgrey.svg)
+![Image of Swift Version Badge](https://img.shields.io/badge/Swift-5-lightgrey.svg)
 Simple class for capturing signatures.
 
-## Swift 4
+## Swift 5
 
-The class is compatible with Swift 4.2.
+The class is compatible with Swift 5
+
 
 ## Legacy Support
 
@@ -156,7 +157,12 @@ YPDrawSignatureView is available under the MIT license. See the [LICENSE](LICENS
 
 ## Update history
 
-### v1.2 - 7/4/18
+### v1.2.1 - 5/6/19
+
+* Fixed annoying complaint. ```CGContextSetStrokeColorWithColor: invalid context 0x0.```
+* Updated to Swift 5
+
+#### v1.2 - 7/4/18
 
 * Added support for multiple signature views.
 
