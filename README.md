@@ -1,5 +1,5 @@
 # YPDrawSignatureView
-![Image of Swift Version Badge](https://img.shields.io/badge/Swift-5-lightgrey.svg)
+[![Financial Contributors on Open Collective](https://opencollective.com/YPDrawSignatureView/all/badge.svg?label=financial+contributors)](https://opencollective.com/YPDrawSignatureView) ![Image of Swift Version Badge](https://img.shields.io/badge/Swift-5-lightgrey.svg)
 Simple class for capturing signatures.
 
 ## Swift 5
@@ -150,6 +150,36 @@ GitHub Issues are for filing **bug reports** and **feature requests** only. Get 
 * [AndreasLey](https://github.com/andreasley).
 * [Andrew Carvajal](https://github.com/andrewcar).
 * [Steve Botello](https://github.com/xsteviex).
+
+## Contributors
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/GJNilsen/YPDrawSignatureView/graphs/contributors"><img src="https://opencollective.com/YPDrawSignatureView/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/YPDrawSignatureView/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/YPDrawSignatureView"><img src="https://opencollective.com/YPDrawSignatureView/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/YPDrawSignatureView/contribute)]
+
+<a href="https://opencollective.com/YPDrawSignatureView/organization/0/website"><img src="https://opencollective.com/YPDrawSignatureView/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/YPDrawSignatureView/organization/1/website"><img src="https://opencollective.com/YPDrawSignatureView/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/YPDrawSignatureView/organization/2/website"><img src="https://opencollective.com/YPDrawSignatureView/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/YPDrawSignatureView/organization/3/website"><img src="https://opencollective.com/YPDrawSignatureView/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/YPDrawSignatureView/organization/4/website"><img src="https://opencollective.com/YPDrawSignatureView/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/YPDrawSignatureView/organization/5/website"><img src="https://opencollective.com/YPDrawSignatureView/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/YPDrawSignatureView/organization/6/website"><img src="https://opencollective.com/YPDrawSignatureView/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/YPDrawSignatureView/organization/7/website"><img src="https://opencollective.com/YPDrawSignatureView/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/YPDrawSignatureView/organization/8/website"><img src="https://opencollective.com/YPDrawSignatureView/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/YPDrawSignatureView/organization/9/website"><img src="https://opencollective.com/YPDrawSignatureView/organization/9/avatar.svg"></a>
 
 ## License
 
