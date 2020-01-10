@@ -139,6 +139,11 @@ final public class YPDrawSignatureView: UIView {
         }
     }
     
+    public override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        // prevent gesture recognizers (e.g. UIPanGestureRecognizer in a FormSheet) from capturing the touches
+        return false
+    }
+    
     // MARK: - Methods for interacting with Signature View
     
     // Clear the Signature View
