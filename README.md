@@ -139,6 +139,8 @@ Add YPDrawSignature.swift to your project
 
 GitHub Issues are for filing **bug reports** and **feature requests** only. Get support from the community over at [StackOverflow](http://stackoverflow.com/search?q=YPDrawSignatureView), or contact the author directly for paid support.
 
+CocoaPods are **not supported**, the Pod is **not** official, and points to an old release containing bugs that have been fixed years ago. Do **not** use CocoaPods.
+
 ## Original Author
 
 [Geert-Jan Zwart](mailto:gj.zwart@appfact.com) [Appfact](http://appfact.no)
