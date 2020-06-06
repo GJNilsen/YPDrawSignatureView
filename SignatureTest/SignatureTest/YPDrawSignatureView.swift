@@ -178,15 +178,15 @@ final public class YPDrawSignatureView: UIView {
     }
     
     // Saves the Signature as a Vector PDF Data blob
-    public func getPDFSignature() -> Data {
+    public func getPDFSignature() -> Data? {
         
-        let mutableData = CFDataCreateMutable(nil, 0)
+        guard let mutableData = CFDataCreateMutable(nil, 0) else { return nil }
         
-        guard let dataConsumer = CGDataConsumer.init(data: mutableData!) else { fatalError() }
+        guard let dataConsumer = CGDataConsumer(data: mutableData) else { return nil }
         
-        var rect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        var rect = CGRect(origin: .zero, size: frame.size)
         
-        guard let pdfContext = CGContext(consumer: dataConsumer, mediaBox: &rect, nil) else { fatalError() }
+        guard let pdfContext = CGContext(consumer: dataConsumer, mediaBox: &rect, nil) else { return nil }
 
         pdfContext.beginPDFPage(nil)
         pdfContext.translateBy(x: 0, y: frame.height)
@@ -198,9 +198,7 @@ final public class YPDrawSignatureView: UIView {
         pdfContext.endPDFPage()
         pdfContext.closePDF()
         
-        let data = mutableData! as Data
-        
-        return data
+        return mutableData as Data
     }
     
     
